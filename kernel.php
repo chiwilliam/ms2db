@@ -230,7 +230,7 @@
     //Check File uploaded
     $zipFile = $_FILES["zipFile"];
     if($zipFile["type"] == ""){
-        $extension = strtoupper(substr(strrchr($name,"."),1));
+        $extension = strtoupper(substr(strrchr($zipFile["name"],"."),1));
         $extension = strtoupper($extension);
         if($extension == "MZXML" || $extension == "MZML" || $extension == "MZDATA"){
             $zipFile["type"] = "application/octet-stream";
