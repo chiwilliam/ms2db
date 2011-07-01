@@ -135,7 +135,7 @@
     $errors["nofile"]["code"] = "01";
     $errors["nofile"]["message"] = "No file was uploaded.";
     $errors["emptyfile"]["code"] = "02";
-    $errors["emptyfile"]["message"] = "File uploaded is empty.";
+    $errors["emptyfile"]["message"] = "File uploaded is either empty or is not supported. If your file is not empty, please compress this file into a ZIP file and try again.";
     $errors["invalidfile"]["code"] = "03";
     $errors["invalidfile"]["message"] = "File uploaded is invalid. Please upload a ZIP file containing either DTA or XML-based files.";
     $errors["noprotein"]["code"] = "04";
@@ -237,17 +237,6 @@
         }
     }
     
-    echo $zipFile["name"];
-    echo "<br/>";
-    echo $zipFile["type"];
-    echo "<br/>";
-    echo $zipFile["tmp_name"];
-    echo "<br/>";
-    echo $zipFile["error"];    
-    echo "<br/>";
-    echo $zipFile["size"];    
-    exit();   
-    
     $fastaProtein = (string)$_POST["fastaProtein"];
 
     //Format fasta sequence, removing unnecessary characters
@@ -276,9 +265,6 @@
        $fastaProtein != false &&
        strlen($_POST["fastaProtein"]) > 0 && strlen($_POST["protease"]) > 0){
         
-        echo $zipFile["type"];
-        exit();        
-
         //output all results in a string to be debugged;
         $debug = '<table>';
         $debug .= '<tr><td colspan ="3" align="center"><h3>';
@@ -1357,7 +1343,7 @@
             $message .= "Error ".$errors["nofile"]["code"].
                         ": ".$errors["nofile"]["message"]."<br />";
         }
-        if(strlen($zipFile["size"]) == 0){
+        if($zipFile["size"] == 0 || $zipFile["error"] == 1){
             $message .= "Error ".$errors["emptyfile"]["code"].
                         ": ".$errors["emptyfile"]["message"]."<br />";
         }
