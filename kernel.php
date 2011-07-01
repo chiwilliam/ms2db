@@ -235,6 +235,8 @@
         if($extension == "MZXML" || $extension == "MZML" || $extension == "MZDATA"){
             $zipFile["type"] = "application/octet-stream";
         }
+        echo $zipFile["type"];
+        exit();
     }
     
     $fastaProtein = (string)$_POST["fastaProtein"];
