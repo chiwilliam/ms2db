@@ -792,9 +792,6 @@ class Commonclass {
         $PML = array();
         $PMLNames = array();
         
-        echo $filetype;
-        exit();
-        
         if($filetype == "application/octet-stream"){
             
             $extension = strtoupper(substr(strrchr($name,"."),1));

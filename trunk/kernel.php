@@ -251,6 +251,9 @@
         $delta = 0;
     }
     
+    echo $_FILES["zipFile"]["type"];
+    exit();
+    
     if(strlen($_FILES["zipFile"]["name"]) > 0 && $_FILES["zipFile"][size] > 0 &&
        ($_FILES["zipFile"]["type"] == "application/zip" || $_FILES["zipFile"]["type"] == "application/x-zip-compressed" || $_FILES["zipFile"]["type"] == "application/octet-stream") &&
        $fastaProtein != false &&
@@ -310,7 +313,7 @@
             $dirPath = "";
             $k=0;
             $graph = array();
-                    
+            
             $aPML = $Func->readMSMSFiles($root, $zipFile["tmp_name"], $zipFile["name"], $zipFile["type"]);
             $PML = $aPML["PML"];
             $PMLNames = $aPML["PMLNames"];
