@@ -251,8 +251,9 @@
         $delta = 0;
     }
     
-    echo "test";
     echo $_FILES["zipFile"]["type"];
+    echo "<br/>";
+    echo $_FILES["zipFile"]["name"];
     exit();
     
     if(strlen($_FILES["zipFile"]["name"]) > 0 && $_FILES["zipFile"][size] > 0 &&
