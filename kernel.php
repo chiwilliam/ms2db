@@ -251,6 +251,7 @@
         $delta = 0;
     }
     
+    echo "test";
     echo $_FILES["zipFile"]["type"];
     exit();
     
