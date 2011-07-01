@@ -792,14 +792,14 @@ class Commonclass {
         $PML = array();
         $PMLNames = array();
         
+        echo $filetype;
+        exit();
+        
         if($filetype == "application/octet-stream"){
             
             $extension = strtoupper(substr(strrchr($name,"."),1));
             
             if($extension == "MZXML" || $extension == "MZML" || $extension == "MZDATA"){
-                
-                echo "test";
-                exit();
                 
                 $data = file_get_contents($tmp_name);
 
