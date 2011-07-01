@@ -230,10 +230,11 @@
     //Check File uploaded
     $zipFile = $_FILES["zipFile"];
     if($zipFile["type"] == ""){
-        echo $_FILES["zipFile"]["type"];
-        echo "<br/>";
-        echo $_FILES["zipFile"]["name"];
-        exit();    
+        $extension = strtoupper(substr(strrchr($name,"."),1));
+        $extension = strtoupper($extension);
+        if($extension == "MZXML" || $extension == "MZML" || $extension == "MZDATA"){
+            $zipFile["type"] = "application/octet-stream";
+        }
     }
     
     $fastaProtein = (string)$_POST["fastaProtein"];
@@ -258,8 +259,8 @@
         $delta = 0;
     }
     
-    if(strlen($_FILES["zipFile"]["name"]) > 0 && $_FILES["zipFile"][size] > 0 &&
-       ($_FILES["zipFile"]["type"] == "application/zip" || $_FILES["zipFile"]["type"] == "application/x-zip-compressed" || $_FILES["zipFile"]["type"] == "application/octet-stream") &&
+    if(strlen($zipFile["name"]) > 0 && $zipFile[size] > 0 &&
+       ($zipFile["type"] == "application/zip" || $zipFile["type"] == "application/x-zip-compressed" || $zipFile["type"] == "application/octet-stream") &&
        $fastaProtein != false &&
        strlen($_POST["fastaProtein"]) > 0 && strlen($_POST["protease"]) > 0){
 
@@ -1337,15 +1338,15 @@
     }
     //Handle errors
     else{
-        if(strlen($_FILES["zipFile"]["name"]) == 0){
+        if(strlen($zipFile["name"]) == 0){
             $message .= "Error ".$errors["nofile"]["code"].
                         ": ".$errors["nofile"]["message"]."<br />";
         }
-        if(strlen($_FILES["zipFile"]["size"]) == 0){
+        if(strlen($zipFile["size"]) == 0){
             $message .= "Error ".$errors["emptyfile"]["code"].
                         ": ".$errors["emptyfile"]["message"]."<br />";
         }
-        if($_FILES["zipFile"]["size"] > 0 && $_FILES["type"] != "application/zip"){
+        if($zipFile["size"] > 0 && $_FILES["type"] != "application/zip"){
             $message .= "Error ".$errors["invalidfile"]["code"].
                         ": ".$errors["invalidfile"]["message"]."<br />";
         }
