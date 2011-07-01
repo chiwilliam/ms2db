@@ -6,7 +6,7 @@
         //for tintin
         $root = "/home/whemurad/public_html/disulfidebond";
         //for haddock2
-        //$root = "/home/ms2db/public_html/disulfidebond";
+        $root = "/home/ms2db/public_html/disulfidebond";
         $istintin = "yes";
     }
     else{
