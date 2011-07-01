@@ -229,6 +229,13 @@
 
     //Check File uploaded
     $zipFile = $_FILES["zipFile"];
+    if($zipFile["type"] == ""){
+        echo $_FILES["zipFile"]["type"];
+        echo "<br/>";
+        echo $_FILES["zipFile"]["name"];
+        exit();    
+    }
+    
     $fastaProtein = (string)$_POST["fastaProtein"];
 
     //Format fasta sequence, removing unnecessary characters
@@ -250,11 +257,6 @@
     if($delta < 0){
         $delta = 0;
     }
-    
-    echo $_FILES["zipFile"]["type"];
-    echo "<br/>";
-    echo $_FILES["zipFile"]["name"];
-    exit();
     
     if(strlen($_FILES["zipFile"]["name"]) > 0 && $_FILES["zipFile"][size] > 0 &&
        ($_FILES["zipFile"]["type"] == "application/zip" || $_FILES["zipFile"]["type"] == "application/x-zip-compressed" || $_FILES["zipFile"]["type"] == "application/octet-stream") &&
