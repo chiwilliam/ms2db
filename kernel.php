@@ -260,13 +260,13 @@
     }
     
     
-    echo $zipFile["type"];
-    exit();        
-        
     if(strlen($zipFile["name"]) > 0 && $zipFile[size] > 0 &&
        ($zipFile["type"] == "application/zip" || $zipFile["type"] == "application/x-zip-compressed" || $zipFile["type"] == "application/octet-stream") &&
        $fastaProtein != false &&
        strlen($_POST["fastaProtein"]) > 0 && strlen($_POST["protease"]) > 0){
+        
+        echo $zipFile["type"];
+        exit();        
 
         //output all results in a string to be debugged;
         $debug = '<table>';
