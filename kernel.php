@@ -237,6 +237,17 @@
         }
     }
     
+    echo $zipFile["name"];
+    echo "<br/>";
+    echo $zipFile["type"];
+    echo "<br/>";
+    echo $zipFile["tmp_name"];
+    echo "<br/>";
+    echo $zipFile["error"];    
+    echo "<br/>";
+    echo $zipFile["size"];    
+    exit();   
+    
     $fastaProtein = (string)$_POST["fastaProtein"];
 
     //Format fasta sequence, removing unnecessary characters
