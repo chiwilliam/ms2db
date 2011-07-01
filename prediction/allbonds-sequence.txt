@@ -1,0 +1,57 @@
+COMPACT DATA
+svm-train -s 0 -h 0 -b 1 -w1 1 -w-1 10 allsvm
+//Comments
+-w-1 10 or -w-1 25 didn't change the results
+-h 0 to speed up the modeling process
+the parameters c and g really help in the classification. They were obtained by the grid.py function
+12/19 true positives (63.2%)
+11 false positives (15.9%)
+
+FT DISULFID     82    176
+FT DISULFID    122    135
+-1 0.152341 0.847659
+1 0.706163 0.293837
+
+FT DISULFID    142    292 
+FT DISULFID    156    356 
+1 0.98902 0.0109795
+1 0.995246 0.00475426
+
+FT DISULFID     68     76 
+FT DISULFID    211    214 
+FT DISULFID    318    321 
+1 0.99523 0.00477035
+1 0.942859 0.0571408
+1 0.995234 0.00476568
+
+FT DISULFID     59    413 
+FT DISULFID    100    172 
+FT DISULFID    151    199 
+FT DISULFID    372    381 
+-1 0.048071 0.951929
+1 0.989705 0.0102953
+-1 0.226768 0.773232
+1 0.805809 0.194191
+
+FT DISULFID     24    145 
+FT DISULFID     48    133 
+1 0.994449 0.00555115
+1 0.875466 0.124534
+
+FT DISULFID     82     98 
+FT DISULFID     94    112 
+FT DISULFID     81    338 
+FT DISULFID     91    341 
+1 0.702415 0.297585
+-1 0.487712 0.512288
+-1 0.00594588 0.994054
+-1 0.24704 0.75296
+
+FT DISULFID    134    176 
+FT DISULFID    247    266 
+1 0.64948 0.35052
+-1 0.356923 0.643077
+
+FT DISULFID     X      X 
+
+FT DISULFID     X      X 
