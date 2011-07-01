@@ -264,6 +264,9 @@
        $fastaProtein != false &&
        strlen($_POST["fastaProtein"]) > 0 && strlen($_POST["protease"]) > 0){
 
+        echo "test";
+        exit();
+        
         //output all results in a string to be debugged;
         $debug = '<table>';
         $debug .= '<tr><td colspan ="3" align="center"><h3>';
