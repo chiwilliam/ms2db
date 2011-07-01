@@ -131,7 +131,7 @@
                                 </tr>
                                 <tr class="input">
                                     <td class="inputleft">
-                                        <label>Transmembrane region from:</label>
+                                        <label>Region where bonds aren't expected:</label>
                                     </td>
                                     <td class="inputright">
                                         <input id="transmembranefrom" name="transmembranefrom" value=""
