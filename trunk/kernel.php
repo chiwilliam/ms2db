@@ -260,7 +260,7 @@
     }
     
     
-    if(strlen($zipFile["name"]) > 0 && $zipFile[size] > 0 &&
+    if(strlen($zipFile["name"]) > 0 && $zipFile["size"] > 0 &&
        ($zipFile["type"] == "application/zip" || $zipFile["type"] == "application/x-zip-compressed" || $zipFile["type"] == "application/octet-stream") &&
        $fastaProtein != false &&
        strlen($_POST["fastaProtein"]) > 0 && strlen($_POST["protease"]) > 0){
