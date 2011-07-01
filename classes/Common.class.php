@@ -798,6 +798,9 @@ class Commonclass {
             
             if($extension == "MZXML" || $extension == "MZML" || $extension == "MZDATA"){
                 
+                echo "test";
+                exit();
+                
                 $data = file_get_contents($tmp_name);
 
                 $path = $root."/DTA/".$name;
