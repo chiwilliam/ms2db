@@ -461,6 +461,7 @@ class ConfirmedMatchclass {
 
     public function FMSPolynomial($TML, $peptides, $cysteines, $CMthreshold, $alliontypes, $delta){
 
+        $FMSsize = 0;
         $result = array();
 
         //PolynomialSubsetSum
@@ -605,7 +606,7 @@ class ConfirmedMatchclass {
                     $list1 = array_merge($list1, $list2);
                     ksort(&$list1);
 
-                    $list1 = $AAs->trimListKeepBigger($list1,$delta);
+                    //$list1 = $AAs->trimListKeepBigger($list1,$delta);
                     
                     //$list1 = $AAs->trimListKeepSmaller($list1,$delta);
                     //$list1alpha = $AAs->trimListKeepSmaller($list1,$delta);
@@ -615,6 +616,7 @@ class ConfirmedMatchclass {
 
                 $FMS = array_merge($list1, $FMS);
             }
+            $FMSsize += count($list1);
         }
 
         unset($list1);
@@ -627,6 +629,7 @@ class ConfirmedMatchclass {
 
         $result['FMS'] = $FMS;
         $result['CM'] = $CM;
+        $result['FMSsize'] = $FMSsize;
 
         return $result;
 
