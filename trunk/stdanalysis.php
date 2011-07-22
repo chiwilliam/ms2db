@@ -96,19 +96,52 @@
                                     </tr>
                                     <tr class="input">
                                         <td class="inputleft">
+                                            <label id="lbions" onmouseover="Tip('Select which ion types will be considered in the analysis')" onmouseout="UnTip()">Multi-ion types selection:</label>
+                                        </td>
+                                        <td class="inputright">
+                                            <i>a</i><input id="iona" type="checkbox" name="iona" value="a" 
+                                                <?php if(!isset($alliontypes['a']) || strlen($alliontypes['a']) > 0) echo "checked";?> />
+                                            <i>ao</i><input id="iona" type="checkbox" name="ionao" value="ao"
+                                                <?php if(strlen($alliontypes['ao']) > 0) echo "checked";?> />
+                                            <i>a*</i><input id="iona" type="checkbox" name="ionas" value="as" 
+                                                <?php if(strlen($alliontypes['as']) > 0) echo "checked";?> />
+                                            <i>b</i><input id="ionb" type="checkbox" name="ionb" value="b" 
+                                                <?php if(!isset($alliontypes['b']) || strlen($alliontypes['b']) > 0) echo "checked";?> />
+                                            <i>b*</i><input id="ionbs" type="checkbox" name="ionbs" value="bs" 
+                                                <?php if(!isset($alliontypes['bs']) || strlen($alliontypes['bs']) > 0) echo "checked";?> />
+                                            <i>bo</i><input id="ionbo" type="checkbox" name="ionbo" value="bo" 
+                                                <?php if(!isset($alliontypes['bo']) || strlen($alliontypes['bo']) > 0) echo "checked";?> />
+                                            <i>c</i><input id="ionc" type="checkbox" name="ionc" value="c" 
+                                                <?php if(!isset($alliontypes['c']) || strlen($alliontypes['c']) > 0) echo "checked";?> />
+                                            <i>x</i><input id="ionx" type="checkbox" name="ionx" value="x" 
+                                                <?php if(!isset($alliontypes['x']) || strlen($alliontypes['x']) > 0) echo "checked";?> />
+                                            <i>y</i><input id="iony" type="checkbox" name="iony" value="y" 
+                                                <?php if(!isset($alliontypes['y']) || strlen($alliontypes['y']) > 0) echo "checked";?> />
+                                            <i>y*</i><input id="ionys" type="checkbox" name="ionys" value="ys" 
+                                                <?php if(!isset($alliontypes['ys']) || strlen($alliontypes['ys']) > 0) echo "checked";?> />
+                                            <i>yo</i><input id="ionyo" type="checkbox" name="ionyo" value="yo" 
+                                                <?php if(!isset($alliontypes['yo']) || strlen($alliontypes['yo']) > 0) echo "checked";?> />
+                                            <i>z</i><input id="ionz" type="checkbox" name="ionz" value="z" 
+                                                <?php if(!isset($alliontypes['z']) || strlen($alliontypes['z']) > 0) echo "checked";?> />
+                                        </td>
+                                    </tr>
+                                    <!--
+                                    <tr class="input">
+                                        <td class="inputleft">
                                             <label>Multi-ion types selection:</label>
                                         </td>
                                         <td class="inputright">
                                             <select id="ions" name="ions"
                                                     onmouseover="Tip('Select which ion types will be considered in the analysis')"
                                                     onmouseout="UnTip()">
-                                                <option <?php if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "all"){echo "selected";} ?> value="all">a b bo b* c x y yo y* z</option>
-                                                <option <?php if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "by"){echo "selected";} ?> value="by">b and y </option>
-                                                <option <?php if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "aby+"){echo "selected";} ?> value="aby+">a b bo b* y yo y*</option>
-                                                <option <?php if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "cxz"){echo "selected";} ?> value="cxz">c x and z</option>
+                                                <option <?php //if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "all"){echo "selected";} ?> value="all">a b bo b* c x y yo y* z</option>
+                                                <option <?php //if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "by"){echo "selected";} ?> value="by">b and y </option>
+                                                <option <?php //if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "aby+"){echo "selected";} ?> value="aby+">a b bo b* y yo y*</option>
+                                                <option <?php //if(!isset($alliontypes)){$alliontypes = "all";} if($alliontypes == "cxz"){echo "selected";} ?> value="cxz">c x and z</option>
                                             </select>
                                         </td>
                                     </tr>
+                                    -->
                                     <tr class="input">
                                         <td class="inputleft">
                                             <label>Number of missing cleavages:</label>

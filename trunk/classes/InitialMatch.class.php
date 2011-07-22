@@ -277,6 +277,7 @@ class InitialMatchclass {
         $countertrimmedporcentage=0;
         $completelist = array();
         $trimmedlist = array();
+        $DMSsize = 0;
 
         $DMS = array();
         $IM = array();
@@ -476,7 +477,7 @@ class InitialMatchclass {
                     $completelist = array_merge($completelist,$list1);
 
                     $list1 = $AAs->removeImpossibleCombinations($list1);
-                    $list1 = $AAs->trimListKeepBigger($list1,$delta);
+                    //$list1 = $AAs->trimListKeepBigger($list1,$delta);
 
                     $trimmedlist = array_merge($trimmedlist,$list1);
 
@@ -486,6 +487,8 @@ class InitialMatchclass {
                     //$list1 = array_merge($list1alpha, $list1beta);
                 }
             }
+            
+            $DMSsize += count($list1);        
             
             //accounts for possible IMs that would be trimmed
             for($i=0;$i<$counterIM;$i++){
@@ -513,6 +516,7 @@ class InitialMatchclass {
         $result['IM'] = $IM;
         $result['delta'] = $delta;
         $result['peptides'] = $disulfideBondedPeptides;
+        $result['DMSsize'] = $DMSsize;
         //$result['regression'] = $regression;
         //$result['size'] = $size;
 

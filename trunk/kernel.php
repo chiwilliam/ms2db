@@ -362,8 +362,9 @@
                 $DMS = $result['DMS'];
                 $IM = $result['IM'];
                 $newpeptides = $result['peptides'];
+                $ADMSsize = $result['DMSsize'];
                 $IMdelta = $result['delta'];
-
+                
                 //$DMSsize = $result['size'];
                 //unset($IM);
 
@@ -396,7 +397,8 @@
                 //$valueK = count($disulfideBondedPeptides);
 
                 if(count($IM) > 0){
-
+                    
+                    $AFMSsize = 0;
                     //report results for paper
                     /*
                     $reportdata['DBP'] = count($disulfideBondedPeptides);
@@ -427,11 +429,62 @@
                     //saves number of CMs per IM
                     $numberBonds = array();
 
+                    $alliontypes = array();
+                    if(isset($_POST["iona"]))
+                        $alliontypes['a'] = $_POST["iona"];
+                    else
+                        $alliontypes['a'] = "";
+                    if(isset($_POST["ionao"]))
+                        $alliontypes['ao'] = $_POST["ionao"];
+                    else
+                        $alliontypes['ao'] = "";
+                    if(isset($_POST["ionas"]))
+                        $alliontypes['as'] = $_POST["ionas"];
+                    else
+                        $alliontypes['as'] = "";
+                    if(isset($_POST["ionb"]))
+                        $alliontypes['b'] = $_POST["ionb"];
+                    else
+                        $alliontypes['b'] = "";
+                    if(isset($_POST["ionbs"]))
+                        $alliontypes['bs'] = $_POST["ionbs"];
+                    else
+                        $alliontypes['bs'] = "";
+                    if(isset($_POST["ionbo"]))
+                        $alliontypes['bo'] = $_POST["ionbo"];
+                    else
+                        $alliontypes['bo'] = "";
+                    if(isset($_POST["ionc"]))
+                        $alliontypes['c'] = $_POST["ionc"];
+                    else
+                        $alliontypes['c'] = "";
+                    if(isset($_POST["ionx"]))
+                        $alliontypes['x'] = $_POST["ionx"];
+                    else
+                        $alliontypes['x'] = "";
+                    if(isset($_POST["iony"]))
+                        $alliontypes['y'] = $_POST["iony"];
+                    else
+                        $alliontypes['y'] = "";
+                    if(isset($_POST["ionys"]))
+                        $alliontypes['ys'] = $_POST["ionys"];
+                    else
+                        $alliontypes['ys'] = "";
+                    if(isset($_POST["ionyo"]))
+                        $alliontypes['yo'] = $_POST["ionyo"];
+                    else
+                        $alliontypes['yo'] = "";
+                    if(isset($_POST["ionz"]))
+                        $alliontypes['z'] = $_POST["ionz"];
+                    else
+                        $alliontypes['z'] = "";
+                    
                     //consider:
                     // all => all ion types
                     // by => only b and y ions
                     // aby+ => a,b,bo,b*,y,yo,y* ions
                     // cxz => only c, x, and z ions
+                    /*
                     $alliontypes = (string)$_POST["ions"];
                     if($zipFile['name'] == "GnT-II-chymotrypsin.zip"){
                         $alliontypes = "aby+";
@@ -441,6 +494,7 @@
                         $tempdebug = false;
                     }
                     //$alliontypes = "all";
+                    */
 
                     //calculate trimming parameter regression curve
                     //populates an array with all deltas for all IMs
@@ -558,7 +612,7 @@
 
                                 //Second Stage Matching. Forms FMS and Confirmed Matches (CMs)
                                 $FMSpolynomial = $CMClass->FMSPolynomial($TML, $peptides, $cysteines, $CMthreshold, $alliontypes, $delta);
-
+                                
                                 if($tempdebug){
                                     $alliontypes = "all";
                                 }
@@ -566,6 +620,7 @@
 
                                 $FMS = $FMSpolynomial['FMS'];
                                 $CM = $FMSpolynomial['CM'];
+                                $AFMSsize += $FMSpolynomial['FMSsize'];
                                 //$regression[$i] = $FMSpolynomial['REGRESSION'];
                                 $FMSsize[$i] = count($FMS);
 
@@ -1137,6 +1192,9 @@
                     if(count($newgraph) > 0){
                         $globalbonds = $Func->executeGabow($newgraph, $root);
                     }
+                    
+                    //Next line is used to check the sizes of DMS and FMS.
+                    //$message .= "<span style=\"margin-left:-100px;\"><b>DMS: ".$ADMSsize." <=> FMS: ".$AFMSsize."</b><br/><br/>";
                     
                     for($i=0;$i<count($bonds);$i++){
                         
