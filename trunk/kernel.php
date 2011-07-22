@@ -613,9 +613,11 @@
                                 //Second Stage Matching. Forms FMS and Confirmed Matches (CMs)
                                 $FMSpolynomial = $CMClass->FMSPolynomial($TML, $peptides, $cysteines, $CMthreshold, $alliontypes, $delta);
                                 
+                                /*
                                 if($tempdebug){
                                     $alliontypes = "all";
                                 }
+                                */
                                 //$CM = $CMClass->Cmatch($FMS, $TML, $precursor, $CMthreshold);
 
                                 $FMS = $FMSpolynomial['FMS'];
