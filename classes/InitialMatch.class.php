@@ -477,7 +477,7 @@ class InitialMatchclass {
                     $completelist = array_merge($completelist,$list1);
 
                     $list1 = $AAs->removeImpossibleCombinations($list1);
-                    //$list1 = $AAs->trimListKeepBigger($list1,$delta);
+                    $list1 = $AAs->trimListKeepBigger($list1,$delta);
 
                     $trimmedlist = array_merge($trimmedlist,$list1);
 
