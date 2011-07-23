@@ -606,7 +606,7 @@ class ConfirmedMatchclass {
                     $list1 = array_merge($list1, $list2);
                     ksort(&$list1);
 
-                    //$list1 = $AAs->trimListKeepBigger($list1,$delta);
+                    $list1 = $AAs->trimListKeepBigger($list1,$delta);
                     
                     //$list1 = $AAs->trimListKeepSmaller($list1,$delta);
                     //$list1alpha = $AAs->trimListKeepSmaller($list1,$delta);
