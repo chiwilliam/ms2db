@@ -62,8 +62,8 @@
                         <tr>
                             <td colspan="2" class="justified">
                                 <b>MS2DB+</b> is an open-source platform-independent web application that efficiently determines 
-                                the disulfide linkage in proteins based on mass spectrometry data. 
-                                The software can account for multiple ions (a, b, bo, b*, c, x, y, yo, y*, and z) in determining the 
+                                the disulfide linkages in proteins based on tandem mass spectrometry data. 
+                                The software can account for multiple ions (a, ao, a*, b, bo, b*, c, x, y, yo, y*, and z) in determining the 
                                 disulfide bonds, yet ensuring that the solution is found in polynomial time.
                             </td>
                         </tr>
@@ -83,9 +83,14 @@
                         <tr>
                             <td colspan="2" class="justified">
                                 <p>
-                                    The application uses a local-to-global approach to merge putative disulfide bonds into 
-                                    the most likely global disulfide connectivity pattern. This pattern is presented in both graphical and 
-                                    tabular user-friendly formats. In its default mode, the software is completely automatic and easy-to-use. 
+                                    The application uses a <i>local-to-global</i> approach to merge putative disulfide bonds found by 
+                                    the <i>search-and-match</i> framework into the most likely global disulfide connectivity pattern. 
+                                    This optimization technique ensures the connectivity topology determined is consistent.
+                                    The disulfide connectivity pattern identified is presented in both graphical and 
+                                    tabular user-friendly formats.
+                                </p>
+                                <p>
+                                    In its default mode, <b>MS2DB+</b> is completely automatic and easy-to-use. 
                                     At the same time, expert users are provided with an opportunity to “tune” crucial parameters required in the 
                                     disulfide bond determination process.
                                 </p>
