@@ -54,10 +54,9 @@
                                                 San Francisco State University, CA 94132
                                                 <p />
                                                 <ul>
-                                                    <li> E-mail: whemurad @ sfsu.edu
-                                                </li>
-                                                <li> Phone: +1 415 827 2979
-                                                </li>
+                                                    <li> E-mail: whemurad @ sfsu.edu, whemurad @ gmail.com</li>
+                                                    <li> Website: <a href="http://williammurad.com">http://williammurad.com</a></li>
+                                                    <li> Phone: +1 415 827 2979</li>
                                             </ul>
                                             <p />
                                         </td>
