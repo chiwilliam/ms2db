@@ -4,7 +4,7 @@
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
         <!-- #BeginEditable "doctitle" -->
-        <title>Publications</title>
+        <title>Help</title>
         <!-- #EndEditable -->
         <link href="styles/style1.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
         <link href="styles/style.css" rel="stylesheet" type="text/css" />
@@ -27,6 +27,7 @@
                     <li><a href="publications.php" onmouseover="Tip('MS2DB+ Publications')" onmouseout="UnTip()">Publications</a></li>
                     <li><a href="contactus.php" onmouseover="Tip('MS2DB+ Contact Us')" onmouseout="UnTip()">Contact Us</a></li>
                     <li class="selected"><a href="help.php" onmouseover="Tip('MS2DB+ Help')" onmouseout="UnTip()">Help</a></li>
+                    <li><a href="faq.php" onmouseover="Tip('MS2DB+ FAQ')" onmouseout="UnTip()">FAQ</a></li>
                 </ul>
             </div>
             <!-- End Navigation -->
@@ -86,7 +87,7 @@
                                 the dissociation method used, etc.<br/><br/>
                                 Different dissociation methods generate different ion types in different abundances.
                                 MS2DB+ allows users to analyze MS/MS data considering combinations of up to  
-                                ten of the most commonly generated ions types: a, b, bo, b*, c, x, y, yo, y*, and z.
+                                twelve of the most commonly generated ions types: a, ao, a*, b, bo, b*, c, x, y, yo, y*, and z.
                                 <br/><br/>
                                 Some of the most common dissociation methods are: Collision Induced Dissociation (CID),
                                 Electron-Transfer Dissociation (ETD), Electron-Capture Dissociation (ECD), 
