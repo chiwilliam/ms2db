@@ -693,7 +693,12 @@ class Commonclass {
         
         $mean = $this->calculateImean($TML, $p2);
         $ions = count($TML);
-        $varianceI = 1.0/($ions-1.0);
+        if($ions != 1){
+            $varianceI = 1.0/($ions-1.0);
+        }
+        else{
+            $varianceI = 0.001;
+        }
         $tmp = 0.0;
         for($i=0;$i<$ions;$i++){
             $tmp += pow(($TML[$i]["intensity"]-$mean),2);
@@ -867,6 +872,48 @@ class Commonclass {
                     }                        
                 }
             }
+            if($extension == "DTA"){
+
+                $data = file_get_contents($tmp_name);
+                $adata = file($tmp_name);
+
+                //subtract one due to DTA format for precursor ions mass Mr
+                //index is number of AA - number of charges - calculated mass
+                /*
+                $index = (string)((int)((substr($data,0,strpos($data," "))-1.0) / $me))."-".
+                         substr($data,(strpos($data," ")+1),1)."-".
+                         substr($data,0,strpos($data,"."))."-".(string)$iterations;
+                */
+                $mass = ((int)(substr($adata[0],0,strpos($adata[0],"\t"))));
+                $charge = substr($adata[0],(strpos($adata[0],"\t")+1),1);
+                $iteration = "0";
+                $index = $mass."-".$charge."-".$iteration;
+
+                /*
+                $index = substr($adata[0],0,strpos($adata[0],"."))."-".
+                         substr($adata[0],(strpos($adata[0],"\t")+1),1)."-1";
+                */
+                
+                if(strlen($data) > 0){
+
+                    if(!is_dir($root."/DTA/".$name)){
+                        mkdir($root."/DTA/".$name);
+                    }
+                    
+                    $PML[$index] = str_replace("\t", " ", $adata[0]);
+                    $PMLNames[$index] = $name;
+
+                    //store data in a local file
+                    $path = $root."/DTA/".$name."/".$index.".txt";
+                    file_put_contents($path, $data);
+                    $begin = 0;
+                    if(strpos($name, "/") > 0){
+                        $begin = strpos($name, "/")+1;
+                    }
+                    $path = $root."/DTA/".$name."/".substr($name,$begin);
+                    file_put_contents($path, $data);
+                }
+            }
         }
         else
         {        
@@ -946,7 +993,7 @@ class Commonclass {
                                      substr($data,0,strpos($data,"."))."-".(string)$iterations;
                             */
                             $index = substr($data,0,strpos($data,"."))."-".
-                                     substr($data,(strpos($data," ")+1),1)."-".(string)$iterations;
+                                     substr($data,(strpos($data,"\t")+1),1)."-".(string)$iterations;
                             $iterations++;
 
                             if(strlen($data) > 0){
