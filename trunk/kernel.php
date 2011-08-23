@@ -552,6 +552,7 @@
 
                             //store precursor ion
                             $precursor = $data[0];
+                            $precursor = str_replace("\t", " ", $precursor);
                             unset($data[0]);
 
                             //transform array: keys will be the intensity and values will be the m/z

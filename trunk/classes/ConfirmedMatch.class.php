@@ -14,9 +14,10 @@ class ConfirmedMatchclass {
         //get maximum intensity
         $count = count($data);
         $maxIntensity = 0;
-        for($i=0;$i<$count;$i++){
+        for($i=1;$i<$count;$i++){
+            $data[$i] = str_replace("\r\n", "", $data[$i]);
+            $data[$i] = str_replace("\t", " ", $data[$i]);
             $intensity = (int)substr($data[$i],strpos($data[$i], " ")+1);
-            //$value = (float)substr($data[$i],0,strpos($data[$i], " "));
             if($intensity > $maxIntensity){
                 $maxIntensity = $intensity;
             }
