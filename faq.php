@@ -101,7 +101,7 @@
                         <tr><td colspan="2"><h4><a name="OpenSource"></a>3. Is MS2DB+ an open source application?</h4></td></tr>
                         <tr><td class="justified">
                                 Yes, MS2DB+ is an open source application. Its source code is available
-                                <a target="_blank" href="http://code.google.com/p/disulfidebond/source/checkout"><span style="color:blue;">here</span></a>
+                                <a target="_blank" href="http://code.google.com/p/ms2db/source/checkout"><span style="color:blue;">here</span></a>
                             </td>
                         </tr>
                         <tr><td colspan="2"><h4><a name="Effectiveness"></a>4. Why is MS2DB+ so effective?</h4></td></tr>
