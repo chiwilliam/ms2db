@@ -996,20 +996,43 @@ class Commonclass {
                                      substr($data,(strpos($data,"\t")+1),1)."-".(string)$iterations;
                             $iterations++;
 
-                            if(strlen($data) > 0){
+                            if(strpos($index, " ") > 0 || strpos($index,"\t") > 0 || strpos($index,"\r\n") > 0){
+                                $mass = ((int)(substr($data,0,strpos($data,"\t"))));
+                                $charge = substr($data,(strpos($data,"\t")+1),1);
+                                $index = $mass."-".$charge."-".$iterations;
 
-                                $PML[$index] = substr($data,0,strpos($data," ",strlen(substr($data,0,strpos($data," ")))+1));
-                                $PMLNames[$index] = $filename;
+                                if(strlen($data) > 0){
 
-                                //store data in a local file
-                                $path = $root."/DTA/".$name."/".$index.".txt";
-                                file_put_contents($path, $data);
-                                $begin = 0;
-                                if(strpos($filename, "/") > 0){
-                                    $begin = strpos($filename, "/")+1;
-                                }                            
-                                $path = $root."/DTA/".$name."/".substr($filename,$begin);
-                                file_put_contents($path, $data);
+                                    $PML[$index] = $mass." ".$charge;
+                                    $PMLNames[$index] = $filename;
+
+                                    //store data in a local file
+                                    $path = $root."/DTA/".$name."/".$index.".txt";
+                                    file_put_contents($path, $data);
+                                    $begin = 0;
+                                    if(strpos($name, "/") > 0){
+                                        $begin = strpos($name, "/")+1;
+                                    }
+                                    $path = $root."/DTA/".$name."/".substr($name,$begin);
+                                    file_put_contents($path, $data);
+                                }
+                            }
+                            else{
+                                if(strlen($data) > 0){
+
+                                    $PML[$index] = substr($data,0,strpos($data," ",strlen(substr($data,0,strpos($data," ")))+1));
+                                    $PMLNames[$index] = $filename;
+
+                                    //store data in a local file
+                                    $path = $root."/DTA/".$name."/".$index.".txt";
+                                    file_put_contents($path, $data);
+                                    $begin = 0;
+                                    if(strpos($filename, "/") > 0){
+                                        $begin = strpos($filename, "/")+1;
+                                    }
+                                    $path = $root."/DTA/".$name."/".substr($filename,$begin);
+                                    file_put_contents($path, $data);
+                                }
                             }
                         }
                     }
