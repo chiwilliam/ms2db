@@ -173,7 +173,7 @@
                         <tr><td colspan="2"><h4><a name="Dataset"></a>8. Is the dataset large enough to validate the algorithm?</h4></td></tr>
                         <tr><td class="justified">
                                 A better evaluation of the method would be possible with a larger dataset. We however note that for disulfide
-                                bond analysis, the use of mass spectra for nine proteins (as has been done by us) represents one of the largest
+                                bond analysis, the use of mass spectra for ten proteins (as has been done by us) represents one of the largest
                                 data sets that have been analyzed in MS-based methods. For comparison purposes, we have summarized the size of
                                 the data sets used in some of the well known papers that have addressed this problem in the recent past in the
                                 figure below. As can be seen, the size of the data set in our validation studies is by far the largest
@@ -189,7 +189,7 @@
                         </tr>
                         <tr><td colspan="2"><h4><a name="Comparison"></a>9. How well MS2DB+ performs when compared to other gold standard methods in the area?</h4></td></tr>
                         <tr><td class="justified">
-                                MS2DB+ was compared, using the nine datasets available, with MassMatrix as well as with the gold standard predictive
+                                MS2DB+ was compared, using the ten datasets available, with MassMatrix as well as with the gold standard predictive
                                 applications (DiANNA,ISULFIND and PreCys), which all use sequence information. To the best of our knowledge, such a
                                 comparative study was conducted for the first time in this area. The figure below summarizes the results –
                                 which show MS2DB+ to have outperformed all these systems.
