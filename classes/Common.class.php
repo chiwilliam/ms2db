@@ -1126,5 +1126,104 @@ class Commonclass {
         
         return $minmax;
     }
+
+    public function getXMLFile($bonds, $truebonds, $minmaxMSMS, $root){
+
+        $file = ((string)(rand(100000, 999999)));
+        $file .= ".xml";
+
+        $path = $_SERVER['HTTP_REFERER'];
+        $path = substr($path, 0, strpos($path, 'kernel'));
+        $path .= "DTA/";
+        $path .= $file;
+
+        $filepath = $root.'/DTA/'.$file;
+
+        $xml = "<connectivity>";
+        $xml .= "<bonds>";
+        for($i=0;$i<count($bonds);$i++){
+            $xml .= "<bond>".$bonds[$i]."</bond>";
+            $xml .= "<score>".$truebonds[$bonds[$i]]["score"]."</score>";
+            if(!is_infinite($truebonds[$bonds[$i]]["ppvalue"])){
+                $xml .= "<ppvalue>".number_format($truebonds[$bonds[$i]]["ppvalue"],0)."</ppvalue>";
+            }
+            else{
+                $xml .= "<ppvalue>".number_format($minmaxMSMS['ppmax'],0)."</ppvalue>";
+            }
+            if(!is_infinite($truebonds[$bonds[$i]]["pp2value"])){
+                $xml .= "<pp2value>".number_format($truebonds[$bonds[$i]]["pp2value"],0)."</pp2value>";
+            }
+            else{
+                $xml .= "<pp2value>".number_format($minmaxMSMS['pp2max'],0)."</pp2value>";
+            }
+        }
+        $xml .= "</bonds>";
+        $xml .= "</connectivity>";
+
+        file_put_contents($filepath, $xml);
+
+        return $path;
+    }
+
+    public function getXMLFileIM($result,$PML, $PMLNames, $fastaProtein, $root){
+
+        $file = ((string)(rand(100000, 999999)));
+        $file .= "-IM-debug.xml";
+
+        $path = $_SERVER['HTTP_REFERER'];
+        $path = substr($path, 0, strpos($path, 'kernel'));
+        $path .= "DTA/";
+        $path .= $file;
+
+        $filepath = $root.'/DTA/'.$file;
+
+        $xml = "<connectivity>";
+        $xml .= "<IMs>";
+        for($i=0;$i<count($result['IM']);$i++){
+            $xml .= "<match>";
+            $xml .= "<DTA_file>";
+            $xml .= $PMLNames[$result['IM'][$i]['PML']];
+            $xml .= "</DTA_file>";
+            $xml .= "<Precursor_ion>";
+            $xml .= $PML[$result['IM'][$i]['PML']];
+            $xml .= "</Precursor_ion>";
+            $xml .= "<peptides>";
+            for($j=0;$j<count($result['DMS'][$result['IM'][$i]['DMS']]['peptides']);$j++){
+               $xml .= "<peptide>";
+               $xml .= "<pep_sequence>";
+               $xml .= $result['DMS'][$result['IM'][$i]['DMS']]['peptides'][$j];
+               $xml .= "</pep_sequence>";
+               $xml .= "<pep_location>";
+               $xml .= $startposition = strpos($fastaProtein, $result['DMS'][$result['IM'][$i]['DMS']]['peptides'][$j])+1;
+               $xml .= "</pep_location>";
+               $xml .= "</peptide>";
+            }
+            $xml .= "</peptides>";
+            $xml .= "<cysteines>";
+            for($j=0;$j<count($result['DMS'][$result['IM'][$i]['DMS']]['cysteines']);$j++){
+                $xml .= "<location>";
+                $startposition = strpos($fastaProtein, $result['DMS'][$result['IM'][$i]['DMS']]['peptides'][$j])+1;
+                $xml .= "<sequence>";
+                $xml .= $result['DMS'][$result['IM'][$i]['DMS']]['peptides'][$j];
+                $xml .= "</sequence>";
+                $xml .= "<positions>";
+                for($k=0;$k<count($result['DMS'][$result['IM'][$i]['DMS']]['cysteines'][$j]);$k++){
+                    $xml .= "<position>";
+                    $xml .= $startposition + $result['DMS'][$result['IM'][$i]['DMS']]['cysteines'][$j][$k];
+                    $xml .= "</position>";
+                }
+                $xml .= "</positions>";
+                $xml .= "</location>";
+            }
+            $xml .= "</cysteines>";
+            $xml .= "</match>";
+        }
+        $xml .= "</IMs>";
+        $xml .= "</connectivity>";
+
+        file_put_contents($filepath, $xml);
+
+        return $path;
+    }
 }
 ?>

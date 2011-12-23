@@ -364,6 +364,11 @@
                 $newpeptides = $result['peptides'];
                 $ADMSsize = $result['DMSsize'];
                 $IMdelta = $result['delta'];
+
+                //Write all Initial Matching information to an XML file
+                $xmlpathIM = $Func->getXMLFileIM($result,$PML, $PMLNames, $fastaProtein, $root);
+                echo '<a target="_blank" href="'.$xmlpathIM.'">'.$xmlpathIM.'</a>';
+                exit;
                 
                 //$DMSsize = $result['size'];
                 //unset($IM);
@@ -423,6 +428,10 @@
                         $message .= "<br>";
                     }
                     */
+
+                    //To test how many IMs and CCPs per protein (possible reviewer)
+                    //echo count($IM)." IMs. CCPS: ".$numPeptides;
+                    //exit;
 
                     $bonds = array();
                     //debugging
@@ -502,7 +511,7 @@
 
                     $FMSsize = array();
                     $Pvalues = array();
-                    
+
                     //array that holds the debug data
                     $aDebug = array();
 
@@ -1140,12 +1149,141 @@
                         }
                         $predictedbonds = $Func->executeGabow($newgraph, $root);
                     }
-                    
+
+                    /*
+                    //Testing a separate dataset, overwritting truebonds2 and minmaxMSMS arrays
+
+                    unset($truebonds2);
+                    unset($minmaxMSMS);
+
+                    $minmaxMSMS['min'] = 126;
+                    $minmaxMSMS['max'] = 640;
+                    $minmaxMSMS['ppmin'] = 7;
+                    $minmaxMSMS['ppmax'] = 316;
+                    $minmaxMSMS['pp2min'] = 17;
+                    $minmaxMSMS['pp2max'] = 316;
+
+                    //1
+                    $truebonds2['99-200']['bond'] = '99-200';
+                    $truebonds2['99-200']['score'] = 410;
+                    $truebonds2['99-200']['ppvalue'] = 28;
+                    $truebonds2['99-200']['pp2value'] = 302;
+                    $truebonds2['99-200']['cys1'] = '99';
+                    $truebonds2['99-200']['cys2'] = '200';
+                    $truebonds2['99-200']['DTA'] = '1';
+                    //2
+                    $truebonds2['301-302']['bond'] = '301-302';
+                    $truebonds2['301-302']['score'] = 283;
+                    $truebonds2['301-302']['ppvalue'] = 12;
+                    $truebonds2['301-302']['pp2value'] = 76;
+                    $truebonds2['301-302']['cys1'] = '301';
+                    $truebonds2['301-302']['cys2'] = '302';
+                    $truebonds2['301-302']['DTA'] = '1';
+                    //3
+                    $truebonds2['99-223']['bond'] = '99-223';
+                    $truebonds2['99-223']['score'] = 349;
+                    $truebonds2['99-223']['ppvalue'] = 184;
+                    $truebonds2['99-223']['pp2value'] = 260;
+                    $truebonds2['99-223']['cys1'] = '99';
+                    $truebonds2['99-223']['cys2'] = '223';
+                    $truebonds2['99-223']['DTA'] = '3';
+                    //4
+                    $truebonds2['268-288']['bond'] = '268-288';
+                    $truebonds2['268-288']['score'] = 640;
+                    $truebonds2['268-288']['ppvalue'] = 88;
+                    $truebonds2['268-288']['pp2value'] = 316;
+                    $truebonds2['268-288']['cys1'] = '268';
+                    $truebonds2['268-288']['cys2'] = '288';
+                    $truebonds2['268-288']['DTA'] = '1';
+                    //5
+                    $truebonds2['99-147']['bond'] = '99-147';
+                    $truebonds2['99-147']['score'] = 309;
+                    $truebonds2['99-147']['ppvalue'] = 103;
+                    $truebonds2['99-147']['pp2value'] = 315;
+                    $truebonds2['99-147']['cys1'] = '99';
+                    $truebonds2['99-147']['cys2'] = '147';
+                    $truebonds2['99-147']['DTA'] = '1';
+                    //6
+                    $truebonds2['223-288']['bond'] = '223-288';
+                    $truebonds2['223-288']['score'] = 464;
+                    $truebonds2['223-288']['ppvalue'] = 252;
+                    $truebonds2['223-288']['pp2value'] = 315;
+                    $truebonds2['223-288']['cys1'] = '223';
+                    $truebonds2['223-288']['cys2'] = '288';
+                    $truebonds2['223-288']['DTA'] = '1';
+                    //7
+                    $truebonds2['312-339']['bond'] = '312-339';
+                    $truebonds2['312-339']['score'] = 295;
+                    $truebonds2['312-339']['ppvalue'] = 102;
+                    $truebonds2['312-339']['pp2value'] = 315;
+                    $truebonds2['312-339']['cys1'] = '312';
+                    $truebonds2['312-339']['cys2'] = '339';
+                    $truebonds2['312-339']['DTA'] = '1';
+                    //8
+                    $truebonds2['58-99']['bond'] = '58-99';
+                    $truebonds2['58-99']['score'] = 244;
+                    $truebonds2['58-99']['ppvalue'] = 220;
+                    $truebonds2['58-99']['pp2value'] = 305;
+                    $truebonds2['58-99']['cys1'] = '58';
+                    $truebonds2['58-99']['cys2'] = '99';
+                    $truebonds2['58-99']['DTA'] = '1';
+                    //9
+                    $truebonds2['223-339']['bond'] = '223-339';
+                    $truebonds2['223-339']['score'] = 435;
+                    $truebonds2['223-339']['ppvalue'] = 316;
+                    $truebonds2['223-339']['pp2value'] = 315;
+                    $truebonds2['223-339']['cys1'] = '223';
+                    $truebonds2['223-339']['cys2'] = '339';
+                    $truebonds2['223-339']['DTA'] = '1';
+                    //10
+                    $truebonds2['58-223']['bond'] = '58-223';
+                    $truebonds2['58-223']['score'] = 308;
+                    $truebonds2['58-223']['ppvalue'] = 307;
+                    $truebonds2['58-223']['pp2value'] = 285;
+                    $truebonds2['58-223']['cys1'] = '58';
+                    $truebonds2['58-223']['cys2'] = '223';
+                    $truebonds2['58-223']['DTA'] = '2';
+                    //11
+                    $truebonds2['99-125']['bond'] = '99-125';
+                    $truebonds2['99-125']['score'] = 209;
+                    $truebonds2['99-125']['ppvalue'] = 177;
+                    $truebonds2['99-125']['pp2value'] = 276;
+                    $truebonds2['99-125']['cys1'] = '99';
+                    $truebonds2['99-125']['cys2'] = '125';
+                    $truebonds2['99-125']['DTA'] = '1';
+                    //12
+                    $truebonds2['114-115']['bond'] = '114-115';
+                    $truebonds2['114-115']['score'] = 126;
+                    $truebonds2['114-115']['ppvalue'] = 7;
+                    $truebonds2['114-115']['pp2value'] = 17;
+                    $truebonds2['114-115']['cys1'] = '114';
+                    $truebonds2['114-115']['cys2'] = '115';
+                    $truebonds2['114-115']['DTA'] = '2';
+                    //13
+                    $truebonds2['200-223']['bond'] = '200-223';
+                    $truebonds2['200-223']['score'] = 155;
+                    $truebonds2['200-223']['ppvalue'] = 174;
+                    $truebonds2['200-223']['pp2value'] = 36;
+                    $truebonds2['200-223']['cys1'] = '200';
+                    $truebonds2['200-223']['cys2'] = '223';
+                    $truebonds2['200-223']['DTA'] = '1';
+                    //14
+                    $truebonds2['288-392']['bond'] = '288-392';
+                    $truebonds2['288-392']['score'] = 217;
+                    $truebonds2['288-392']['ppvalue'] = 174;
+                    $truebonds2['288-392']['pp2value'] = 149;
+                    $truebonds2['288-392']['cys1'] = '288';
+                    $truebonds2['288-392']['cys2'] = '392';
+                    $truebonds2['288-392']['DTA'] = '1';
+
+                    //End Testing separate dataset
+                    */
                     
                     //global graph, including all bonds for both frameworks
                     //normalized gabow
                     unset($newgraph);
                     $newgraph = array();
+                    $useppvalues = false;
                     
                     if(count($truebonds2) > 0){
                         $SS = array_keys($truebonds2);
@@ -1155,20 +1293,24 @@
                             $cys2 = (string)$truebonds2[$SS[$w]]['cys2'];
 
                             $counttmp = $truebonds2[$SS[$w]]['score']/$minmaxMSMS['max'];
-                            if(!is_infinite($truebonds2[$SS[$w]]['ppvalue'])){
-                                $counttmp += $truebonds2[$SS[$w]]['ppvalue']/$minmaxMSMS['ppmax'];
+                            
+                            if($useppvalues){
+                                if(!is_infinite($truebonds2[$SS[$w]]['ppvalue'])){
+                                    $counttmp += $truebonds2[$SS[$w]]['ppvalue']/$minmaxMSMS['ppmax'];
+                                }
+                                else{
+                                    $counttmp++;
+                                }
+                                if(!is_infinite($truebonds2[$SS[$w]]['pp2value'])){
+                                    $counttmp += $truebonds2[$SS[$w]]['pp2value']/$minmaxMSMS['pp2max'];
+                                }
+                                else{
+                                    $counttmp++;
+                                }
+                                $counttmp = $counttmp/3;
                             }
-                            else{
-                                $counttmp++;
-                            }
-                            if(!is_infinite($truebonds2[$SS[$w]]['pp2value'])){
-                                $counttmp += $truebonds2[$SS[$w]]['pp2value']/$minmaxMSMS['pp2max'];
-                            }
-                            else{
-                                $counttmp++;
-                            }
-                            $counttmp/3;
-                            $counttmp = number_format($counttmp*100,0);                        
+
+                            $counttmp = number_format($counttmp*100,0);
 
                             for($z=0;$z<$counttmp;$z++){
                                 $newgraph[$cys1][] = $cys2;
@@ -1222,6 +1364,14 @@
                             
                             $message .= ")</span><br><br>";
                         }
+
+                        //Writing results to file
+                        $xmlpath = $Func->getXMLFile($bonds, $truebonds, $minmaxMSMS, $root);
+                        
+                    }
+
+                    if(strlen($xmlpath) > 0){
+                        $message .= '<span style="margin-left:-100px;"><a href="'.$xmlpath.'" target="_blank"><b>Downloads the complete S-S connectivity in XML format here</b></a><br/><br/>';
                     }
                     
                     if(count($predictedbonds) > 0){
