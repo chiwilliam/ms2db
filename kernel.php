@@ -4,6 +4,9 @@
     $time = array();
     $time["start"] = microtime(true);
 
+    //Show detailed information about IMs, CMs, global connectivity in XML
+    $DEBUGMODE = true;
+
     //build root path (i.e.: C:\xampp\htdocs\)
     $root = $_SERVER['DOCUMENT_ROOT'];
    
@@ -367,8 +370,8 @@
 
                 //Write all Initial Matching information to an XML file
                 $xmlpathIM = $Func->getXMLFileIM($result,$PML, $PMLNames, $fastaProtein, $root);
-                echo '<a target="_blank" href="'.$xmlpathIM.'">'.$xmlpathIM.'</a>';
-                exit;
+                $IMDEBUG = '<a target="_blank" href="'.$xmlpathIM.'">IM Details</a>';
+                //exit;
                 
                 //$DMSsize = $result['size'];
                 //unset($IM);
@@ -1050,6 +1053,9 @@
                         }
                     }
                     */
+                    //Write all Initial Matching information to an XML file
+                    $xmlpathCM = $Func->getXMLFileCM($truebonds, $root);
+                    $CMDEBUG = '<a target="_blank" href="'.$xmlpathCM.'">CM Details</a>';
                     
                     //convert array indexes to disulfide bonds
                     $filteredbonds = array();
@@ -1370,8 +1376,16 @@
                         
                     }
 
-                    if(strlen($xmlpath) > 0){
-                        $message .= '<span style="margin-left:-100px;"><a href="'.$xmlpath.'" target="_blank"><b>Downloads the complete S-S connectivity in XML format here</b></a><br/><br/>';
+                    if($DEBUGMODE){
+                        $DEBUGmessage = "Available in XML: ";
+                        if(strlen($xmlpath) > 0){
+                            $DEBUGmessage .= '<a href="'.$xmlpath.'" target="_blank">S-S connectivity</a>, ';
+                        }
+
+                        //include IMDEBUG AND CMDEBUG on message
+                        $DEBUGmessage .= $IMDEBUG;
+                        $DEBUGmessage .= ", ";
+                        $DEBUGmessage .= $CMDEBUG;
                     }
                     
                     if(count($predictedbonds) > 0){
@@ -1555,30 +1569,40 @@
                         ": ".$errors["digestion"]["message"]."<br />";
         }
     }
-    //Handle errors
+    //Handle errors or XML Debug for IM matches
     else{
-        if(strlen($zipFile["name"]) == 0){
-            $message .= "Error ".$errors["nofile"]["code"].
-                        ": ".$errors["nofile"]["message"]."<br />";
+        if($zipFile['type'] == "text/xml" || $zipFile['type'] == "text/plain"){
+            if($zipFile['type'] == "text/xml"){
+                $message = $Func->processXMLFilesWithIMInfo($zipFile,$root);
+            }
+            else{
+                $message = $Func->isolateDTAFiles($zipFile,$root);
+            }
         }
-        if($zipFile["size"] == 0 || $zipFile["error"] == 1){
-            $message .= "Error ".$errors["emptyfile"]["code"].
-                        ": ".$errors["emptyfile"]["message"]."<br />";
-        }
-        if($zipFile["size"] > 0 && $_FILES["type"] != "application/zip"){
-            $message .= "Error ".$errors["invalidfile"]["code"].
-                        ": ".$errors["invalidfile"]["message"]."<br />";
-        }
-        if(strlen($_POST["fastaProtein"]) == 0){
-            $message .= "Error ".$errors["noprotein"]["code"].
-                        ": ".$errors["noprotein"]["message"]."<br />";
-        }
-        if($fastaProtein == false){
-            $message .= "Error ".$errors["invalidprotein"]["code"].
-                        ": ".$errors["invalidprotein"]["message"]."<br />";
-        }
+        else{
+            if(strlen($zipFile["name"]) == 0){
+                $message .= "Error ".$errors["nofile"]["code"].
+                            ": ".$errors["nofile"]["message"]."<br />";
+            }
+            if($zipFile["size"] == 0 || $zipFile["error"] == 1){
+                $message .= "Error ".$errors["emptyfile"]["code"].
+                            ": ".$errors["emptyfile"]["message"]."<br />";
+            }
+            if($zipFile["size"] > 0 && $_FILES["type"] != "application/zip"){
+                $message .= "Error ".$errors["invalidfile"]["code"].
+                            ": ".$errors["invalidfile"]["message"]."<br />";
+            }
+            if(strlen($_POST["fastaProtein"]) == 0){
+                $message .= "Error ".$errors["noprotein"]["code"].
+                            ": ".$errors["noprotein"]["message"]."<br />";
+            }
+            if($fastaProtein == false){
+                $message .= "Error ".$errors["invalidprotein"]["code"].
+                            ": ".$errors["invalidprotein"]["message"]."<br />";
+            }
 
-        unset($debug);
+            unset($debug);
+        }        
     }
 
     //Load UI

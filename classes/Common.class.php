@@ -1225,5 +1225,192 @@ class Commonclass {
 
         return $path;
     }
+
+    public function getXMLFileCM($truebonds, $root){
+
+        $file = ((string)(rand(100000, 999999)));
+        $file .= "-CM-debug.xml";
+
+        $path = $_SERVER['HTTP_REFERER'];
+        $path = substr($path, 0, strpos($path, 'kernel'));
+        $path .= "DTA/";
+        $path .= $file;
+
+        $filepath = $root.'/DTA/'.$file;
+
+        $xml = "<connectivity>";
+        $xml .= "<CMs>";
+
+        $keys = array_keys($truebonds);
+        
+        for($i=0;$i<count($keys);$i++){
+            $xml .= "<match>";
+            
+            $xml .= "<bond>";
+            $xml .= $truebonds[$keys[$i]]['bond'];
+            $xml .= "</bond>";
+            $xml .= "<DTA>";
+            $xml .= $truebonds[$keys[$i]]['DTA'];
+            $xml .= "</DTA>";
+            $xml .= "<score>";
+            $xml .= $truebonds[$keys[$i]]['score'];
+            $xml .= "</score>";
+            $xml .= "<ppvalue>";
+            $xml .= $truebonds[$keys[$i]]['ppvalue'];
+            $xml .= "</ppvalue>";
+            $xml .= "<pp2value>";
+            $xml .= $truebonds[$keys[$i]]['pp2value'];
+            $xml .= "</pp2value>";
+
+            $xml .= "</match>";
+        }
+
+        $xml .= "</CMs>";
+        $xml .= "</connectivity>";
+
+        file_put_contents($filepath, $xml);
+
+        return $path;
+    }
+
+    public function processXMLFilesWithIMInfo($zipFile,$root){
+
+        $conn = $this->openDB();
+
+        $doc = new DOMDocument();
+        $doc->load($zipFile['tmp_name']);
+
+        $matches = $doc->getElementsByTagName("match");
+        foreach($matches as $match){
+
+            $dta = $match->getElementsByTagName("DTA_file")->item(0)->nodeValue;
+            
+            $precursor_info = $match->getElementsByTagName("Precursor_ion")->item(0)->nodeValue;
+            $precursor = (float)(substr($precursor_info,0,strpos($precursor_info," ")));
+            $charge = (int)(substr($precursor_info,strpos($precursor_info," ")+1,1));
+
+            //save IM on DB
+            $query = "INSERT INTO ms2db.im (dta, precursor, charge) VALUES ('".$dta."', ".$precursor.", ".$charge.");";
+            mysql_query($query) or die('Error Inserting data');
+
+            //retrieve match ID
+            $query = "select im.match_id from im order by match_id desc limit 0,1;";
+            $result = mysql_query($query);
+            $row = mysql_fetch_array($result, MYSQL_ASSOC);
+            $matchID = (int)($row['match_id']);
+            
+            $peptides = $match->getElementsByTagName("peptide");
+            foreach($peptides as $peptide){
+                $sequence = $peptide->getElementsByTagName("pep_sequence")->item(0)->nodeValue;
+                $location = (int)($peptide->getElementsByTagName("pep_location")->item(0)->nodeValue);
+
+                //save peptide sequence on DB
+                $query = "INSERT INTO ms2db.peptide (match_id, sequence, location) VALUES (".$matchID.", '".$sequence."', ".$location.");";
+                mysql_query($query) or die('Error Inserting data');
+
+            }
+
+            $locations = $match->getElementsByTagName("location");
+            $aLoc = array();
+            foreach($locations as $loc){
+
+                $sequence = $loc->getElementsByTagName("sequence")->item(0)->nodeValue;
+
+                //get ID for peptide sequence
+                $query = "select peptide.peptide_id FROM peptide where match_id = ".$matchID." and sequence = '".$sequence."';";
+                $result = mysql_query($query);
+                $row = mysql_fetch_array($result, MYSQL_ASSOC);
+                $peptideID = (int)($row['peptide_id']);
+                
+                $aLoc[$sequence] = array();
+
+                $cysteines = $loc->getElementsByTagName("position");
+                foreach($cysteines as $pos){
+                    $position = (int)($pos->nodeValue);
+
+                    //save cysteine on DB
+                    $query = "INSERT INTO ms2db.cysteine (peptide_id, position) VALUES (".$peptideID.", ".$position.");";
+                    mysql_query($query) or die('Error Inserting data');
+                    
+                    //retrieve cysteine ID                   
+                    $query = "select cysteine.cysteine_id FROM cysteine where peptide_id = ".$peptideID." and position = ".$position.";";
+                    $result = mysql_query($query);
+                    $row = mysql_fetch_array($result, MYSQL_ASSOC);
+                    $cysteineID = (int)($row['cysteine_id']);
+
+                    $aLoc[$sequence][] = array('peptideID' => $peptideID,'position' => $position, 'cysteineID' => $cysteineID);
+                }
+            }
+
+            $sequences = array_keys($aLoc);
+            for($i=0;$i<count($sequences);$i++){
+
+                //create possible bonds
+                $bonds = array();
+                $sequences = array_keys($aLoc);
+
+                for($i=0;$i<count($sequences)-1;$i++){
+                    $seq1 = $aLoc[$sequences[$i]];
+                    $seq2 = $aLoc[$sequences[$i+1]];
+
+                    for($j=0;$j<count($seq1);$j++){
+                        for($k=0;$k<count($seq2);$k++){
+                            $bond = $seq1[$j]['position'].'-'.$seq2[$k]['position'];
+                            
+                            //save S-S bond on DB
+                            $query = "INSERT INTO ms2db.bond (cys1_id, cys2_id, bond) VALUES (".$seq1[$j]['cysteineID'].", ".$seq2[$k]['cysteineID'].", '".$bond."');";
+                            mysql_query($query) or die('Error Inserting data');
+                        }
+                    }
+                }
+
+                unset($aLoc);
+                unset($bonds);
+            }
+        }
+
+        $this->closeDB($conn);
+        
+        return 'File processed successfully!';
+    }
+
+    public function openDB(){
+        
+        $dbhost = 'localhost';
+        $dbuser = 'root';
+        $dbpass = 'xmas';
+
+        $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die('Error connecting to mysql');
+
+        $dbname = 'ms2db';
+        
+        mysql_select_db($dbname) or die('Error selecting DB');
+
+        return $conn;
+    }
+
+    public function closeDB($conn){
+        mysql_close($conn) or die('Error closing DB');
+    }
+
+    public function isolateDTAFiles($zipFile,$root){
+
+        $data = file_get_contents($zipFile['tmp_name']);
+        $files = explode("\n", $data);
+
+        for($i=0;$i<count($files);$i++){
+            $copyfrom = $root."/DTA/allfiles/".trim($files[$i]);
+            $copyfrom = str_replace('/','\\', $copyfrom);
+            $copyto = $root."/DTA/true_bonds/".substr(trim($files[$i]),2);
+            $copyto = str_replace('/','\\', $copyto);
+
+            $result = copy($copyfrom, $copyto);
+            if(!$result){
+                return 'Failed';
+            }
+        }
+        
+        return "DTA files saved successfully.";
+    }
 }
 ?>
