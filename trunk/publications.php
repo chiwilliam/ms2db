@@ -57,74 +57,70 @@
                                     <dd>&nbsp;</dd>
                                     -->
                                     <li>
-                                        <font face="Times New Roman" size="3">W. Murad, R. Singh, and R. Yen
-                                        &quot;An efficient algorithmic approach for mass spectrometry-based disulfide connectivity determination using multi-ion analysis&quot;,
-                                        <i>APBC 2011, BMC Bioinformatics Journal</i>, 2011</font>
-                                        <a href="./papers/apbc2011.zip">
-                                            <img alt="[ZIP]" border="0" height="16" src="./images/pdf.gif" width="16" />
-                                        </a>
-                                    </li>
-                                    <dd>&nbsp;</dd>
-                                    <li>
-                                        <font face="Times New Roman" size="3">W. Murad, R. Singh, and R. Yen 
-                                        &quot;Polynomial-Time Disulfide Bond Determination Using Mass Spectrometry Data&quot;
-                                        <i>IEEE Computational Structural Bioinformatics Workshop</i>, pp. 79-86, 2009</font>
-                                        <a href="./papers/csbw2009.pdf">
+                                        <font face="Times New Roman" size="3">
+                                        W. Murad, R. Singh, and T-Y. Yen, "An Efficient Algorithmic Approach for Mass
+                                        Spectrometry-Based Disulfide Connectivity Determination in Proteins Using
+                                        Multi-Ion Analysis", <i>BMC Bioinformatics</i>, 12 (Suppl 1):S12, 2011
+                                        (Corresponding author: R. Singh).
+                                        </font>
+                                        <a target="_blank" href="http://www.biomedcentral.com/1471-2105/12/S1/S12">
                                             <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
                                         </a>
                                     </li>
                                     <dd>&nbsp;</dd>
                                     <li>
-                                        <font face="Times New Roman" size="3">R. Singh &quot;A Review of
-                                        Algorithmic Techniques for Disulfide-Bond Determination&quot;, <i>Briefings
-                                        in Functional Genomics and Proteomics</i>, 2008, Vol. 7, pp. 157-172,
-                                        2008</font>. Available online at:
-                                        <a style="color:blue;" href="http://bfgp.oxfordjournals.org/cgi/content/abstract/7/2/157" target="_blank">
-                                            http://bfgp.oxfordjournals.org/cgi/content/abstract/7/2/157
-                                        </a>
-                                    </li>
-                                    <dd>&nbsp;</dd>
-                                    <li>
-                                        <font face="Times New Roman" size="3">T. Lee and R. Singh, &quot;Comparative
-                                        Analysis of Disulfide Bond Determination Using Computational-Predictive
-                                        Methods and Mass Spectrometry-Based Algorithmic Analysis&quot;, <i>International
-                                        Conference on Bioinformatics Research and Development (BIRD)</i>,
-                                        Communications in Computer and Information Science, Vol. 13, pp.
-                                        140-153, Springer Verlag, 2008</font>
-                                        <a href="http://tintin.sfsu.edu/papers/BIRD2008-MS2DB.pdf">
+                                        <font face="Times New Roman" size="3">
+                                        W. Murad, R. Singh, and T-Y. Yen, "Polynomial Time Disulfide Bond Determination
+                                        using Mass Spectrometry Data", <i>IEEE Computational Structural Bioinformatics
+                                        Workshop (CSBW)</i>, pp. 79-86, 2009.
+                                        </font>
+                                        <a target="_blank" href="http://tintin.sfsu.edu/papers/CSBW2009.pdf">
                                             <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
                                         </a>
                                     </li>
                                     <dd>&nbsp;</dd>
                                     <li>
-                                        <font face="Times New Roman" size="3">T. Lee, R. Singh, R. Yen,
-                                        and B. Macher, &quot;An Algorithmic Approach to Automated High-Throughput
-                                        Identification of Disulfide Connectivity in Proteins Using Tandem
-                                        Mass Spectrometry&quot;, <i>Computational Systems Bioinformatics Conference
-                                        (CSB), pp. 41-51, 2007 </i></font>
-                                        <a href="http://tintin.sfsu.edu/papers/CSB-2007.pdf">
+                                        <font face="Times New Roman" size="3">
+                                        R. Singh, "A Review of Algorithmic Techniques for Disulfide-Bond Determination",
+                                        <i>Briefings in Functional Genomics and Proteomics</i>, 2008, Vol. 7, pp. 157-172, 2008.
+                                        </font>
+                                        <a target="_blank" href="http://bfg.oxfordjournals.org/content/7/2/157.full.pdf+html">
                                             <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
                                         </a>
                                     </li>
                                     <dd>&nbsp;</dd>
                                     <li>
-                                        <font face="Times New Roman" size="3">T. Lee, R. Singh, R. Yen,
-                                        and B. Macher, &quot;MS2DB: A Mass-Based Hashing Algorithm for the Identification
-                                        of Disulfide Linkage Patterns in Protein Utilizing Mass Spectrometric
-                                        Data&quot;, <i>IEEE International Symposium on Computer-Based Medical
-                                        Systems (CBMS),</i> pp. 397-402, 2007</font>
-                                        <a href="http://tintin.sfsu.edu/papers/Lee-Disulfide.pdf">
+                                        <font face="Times New Roman" size="3">
+                                        T. Lee and R. Singh, "Comparative Analysis of Disulfide Bond Determination Using Computational-Predictive Methods and Mass Spectrometry-Based Algorithmic Analysis", <i>International Conference on Bioinformatics Research and Development (BIRD)</i>, Communications in Computer and Information Science, Vol. 13, pp. 140-153, Springer Verlag, 2008.
+                                        </font>
+                                        <a target="_blank" href="http://tintin.sfsu.edu/papers/BIRD2008-MS2DB.pdf">
                                             <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
                                         </a>
                                     </li>
                                     <dd>&nbsp;</dd>
                                     <li>
-                                        <font face="Times New Roman" size="3">T. Lee, R. Singh, R. Yen,
-                                        and B. Macher, &quot;MS2DB: An Algorithmic Approach to Determine Disulfide
-                                        Linkage Patterns in Proteins by Utilizing Tandem Mass Spectrometric
-                                        Data&quot;, <i>IEEE International Symposium on Computer-Based Medical
-                                        Systems</i> (CBMS), pp. 947-952, 2006 </font>
-                                        <a href="http://tintin.sfsu.edu/papers/CBMS-DisulfideBond-2006.pdf">
+                                        <font face="Times New Roman" size="3">
+                                        T. Lee, R. Singh, R. Yen, and B. Macher, "An Algorithmic Approach to Automated High-Throughput Identification of Disulfide Connectivity in Proteins Using Tandem Mass Spectrometry", <i>Computational Systems Bioinformatics Conference (CSB)</i>, pp. 41-51, 2007.
+                                        </font>
+                                        <a target="_blank" href="http://tintin.sfsu.edu/papers/CSB-2007.pdf">
+                                            <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
+                                        </a>
+                                    </li>
+                                    <dd>&nbsp;</dd>
+                                    <li>
+                                        <font face="Times New Roman" size="3">
+                                        T. Lee, R. Singh, R. Yen, and B. Macher, "MS2DB: A Mass-Based Hashing Algorithm for the Identification of Disulfide Linkage Patterns in Protein Utilizing Mass Spectrometric Data", <i>IEEE International Symposium on Computer-Based Medical Systems (CBMS)</i>, pp. 397-402, 2007.
+                                        </font>
+                                        <a target="_blank" href="http://tintin.sfsu.edu/papers/Lee-Disulfide.pdf">
+                                            <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
+                                        </a>
+                                    </li>
+                                    <dd>&nbsp;</dd>
+                                    <li>
+                                        <font face="Times New Roman" size="3">
+                                        T. Lee, R. Singh, R. Yen, and B. Macher, "MS2DB: An Algorithmic Approach to Determine Disulfide Linkage Patterns in Proteins by Utilizing Tandem Mass Spectrometric Data", <i>IEEE International Symposium on Computer-Based Medical Systems (CBMS)</i>, pp. 947-952, 2006.
+                                        </font>
+                                        <a target="_blank" href="http://tintin.sfsu.edu/papers/CBMS-DisulfideBond-2006.pdf">
                                             <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
                                         </a>
                                     </li>
