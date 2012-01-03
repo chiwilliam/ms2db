@@ -1412,5 +1412,81 @@ class Commonclass {
         
         return "DTA files saved successfully.";
     }
+
+    function sortTruebonds($truebonds){
+
+        //test info to fix Gabow algorithm
+        /*
+        unset($truebonds);
+        $truebonds = array();
+        $truebonds['99-339']['cys1'] = "99";
+        $truebonds['99-339']['cys2'] = "339";
+        $truebonds['99-339']['score'] = 232;
+        $truebonds['200-392']['cys1'] = "200";
+        $truebonds['200-392']['cys2'] = "392";
+        $truebonds['200-392']['score'] = 184;
+        $truebonds['392-537']['cys1'] = "392";
+        $truebonds['392-537']['cys2'] = "537";
+        $truebonds['392-537']['score'] = 237;
+        $truebonds['223-537']['cys1'] = "223";
+        $truebonds['223-537']['cys2'] = "537";
+        $truebonds['223-537']['score'] = 167;
+        $truebonds['339-383']['cys1'] = "339";
+        $truebonds['339-383']['cys2'] = "383";
+        $truebonds['339-383']['score'] = 215;
+        $truebonds['312-510']['cys1'] = "312";
+        $truebonds['312-510']['cys2'] = "510";
+        $truebonds['312-510']['score'] = 238;
+        $truebonds['471-590']['cys1'] = "471";
+        $truebonds['471-590']['cys2'] = "590";
+        $truebonds['471-590']['score'] = 218;
+        */
+        
+        $results = array();
+        $graphbonds = array();
+        $readybonds = array();
+
+        $keys = array_keys($truebonds);
+        for($i=0;$i<count($keys);$i++){
+            $ready = true;
+            $bond = $keys[$i];
+            $cys1 = $truebonds[$bond]['cys1'];
+            $cys2 = $truebonds[$bond]['cys2'];
+            for($j=0;$j<count($keys);$j++){
+                if($i!=$j){                    
+                    $cys3 = $truebonds[$keys[$j]]['cys1'];
+                    $cys4 = $truebonds[$keys[$j]]['cys2'];
+                    if($cys1 == $cys3 || $cys1 == $cys4 || $cys2 == $cys3 || $cys2 == $cys4){
+                        $graphbonds[$keys[$i]] = $truebonds[$keys[$i]];
+                        $ready = false;
+                        break;
+                    }
+                }
+            }
+            if($ready){
+                $readybonds[] = $bond;
+            }
+        }
+        
+        $results['graphbonds'] = $graphbonds;
+        $results['readybonds'] = $readybonds;
+        
+        return $results;
+    }
+    
+    function combineTrueBonds($bonds,$bondstmp){
+
+        $newbonds = array();
+
+        for($i=0;$i<count($bonds);$i++){
+            $newbonds[] = $bonds[$i];
+        }
+        for($i=0;$i<count($bondstmp);$i++){
+            $newbonds[] = $bondstmp[$i];
+        }
+
+        return $newbonds;
+    }
+
 }
 ?>
