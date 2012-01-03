@@ -1090,14 +1090,22 @@
                         $truebonds[$SS[$w]]['score'] = ((int)(($score/$minimumscore)*100));
                     }
                     
+                    //patch to fix the issue with the Gabow script. The problem
+                    //is: the external script fails when there are more than 9
+                    //(single digit) vertices
+                    $truebondstmp = array();
+                    $Gabowresults = $Func->sortTruebonds($truebonds);
+                    $truebondstmp = $Gabowresults['graphbonds'];
+                    $bondstmp = $Gabowresults['readybonds'];
+                    
                     $newgraph = array();
-                    $SS = array_keys($truebonds);
+                    $SS = array_keys($truebondstmp);
                     for($w=0;$w<count($SS);$w++){
 
-                        $cys1 = (string)$truebonds[$SS[$w]]['cys1'];
-                        $cys2 = (string)$truebonds[$SS[$w]]['cys2'];
+                        $cys1 = (string)$truebondstmp[$SS[$w]]['cys1'];
+                        $cys2 = (string)$truebondstmp[$SS[$w]]['cys2'];
 
-                        $counttmp = $truebonds[$SS[$w]]['score'];
+                        $counttmp = $truebondstmp[$SS[$w]]['score'];
                         for($z=0;$z<$counttmp;$z++){
                             $newgraph[$cys1][] = $cys2;
                             $newgraph[$cys2][] = $cys1;
@@ -1105,11 +1113,15 @@
                     }
                     //destroy old graph, and keep new graph with only "valid" SS bonds
                     unset($graph);
+                    unset($truebondstmp);
 
                     //Using Gabow algorithm to solve maximum weighted matching problem
                     if(count($bonds) > 0){
                         $bonds = $Func->executeGabow($newgraph, $root);
                     }
+
+                    //patch to fix the issue with the Gabow script.
+                    $bonds = $Func->combineTrueBonds($bonds,$bondstmp);
                     
                     //PREDICTIVE TECHNIQUE
                     $pbonds = array();
