@@ -1113,12 +1113,16 @@
                     }
                     //destroy old graph, and keep new graph with only "valid" SS bonds
                     unset($graph);
-                    unset($truebondstmp);
 
                     //Using Gabow algorithm to solve maximum weighted matching problem
-                    if(count($bonds) > 0){
+                    if(count($truebondstmp) > 0){
                         $bonds = $Func->executeGabow($newgraph, $root);
                     }
+                    else{
+                        $bonds = array();
+                    }
+
+                    unset($truebondstmp);
 
                     //patch to fix the issue with the Gabow script.
                     $bonds = $Func->combineTrueBonds($bonds,$bondstmp);
