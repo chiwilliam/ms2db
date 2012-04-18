@@ -72,6 +72,9 @@
                                     <li class="spacing">
                                         <a href="#Comparison">How well MS2DB+ performs when compared to other gold standard methods in the area?</a>
                                     </li>
+                                    <li class="spacing">
+                                        <a href="#DetailedResults">Does MS2DB+ provide access to intermediary results?</a>
+                                    </li>
                                 </ol>
                             </td>
                         </tr>
@@ -197,6 +200,17 @@
                                 <img style="margin-left:50px;" alt="Methods comparison" src="images/methodscomparison.png" id="methodscomparison"></img>
                             </td>
                         </tr>
+                        <tr><td colspan="2"><h4><a name="DetailedResults"></a>10. Does MS2DB+ provide access to intermediary results?</h4></td></tr>
+                        <tr><td class="justified">
+                                MS2DB+ provides the intermediary matches (IMs), all disulfide bonds found prior to the global optimization (CMs), 
+                                and the confirmatory match scores in XML format at the bottom of the page in which the disulfide connectivity results are presented. 
+                                The XML file labelled S-S connectivity lists the globally consistent disulfide bonds found and their respective match scores, 
+                                pp scores and pp2 scores. The XML file labelled IM Details lists all Initial Matches found, including: the MS/MS file involved in the match, 
+                                the precursor ion mass and charge state, the peptide sequences, and the cysteines present. Finally, the file labelled CM Details lists all 
+                                disulfide bonds confirmed prior to the global connectivity consistency check, which is done using an implementation of the Gabow algorithm. 
+                                These files allows users to carry a thorough analysis of the intermediary steps and results of MS2DB+.
+                            </td>
+                        </tr>                        
                         <tr>
                             <td>
                                 <p></p>
