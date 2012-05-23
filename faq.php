@@ -209,6 +209,20 @@
                                 the precursor ion mass and charge state, the peptide sequences, and the cysteines present. Finally, the file labelled CM Details lists all 
                                 disulfide bonds confirmed prior to the global connectivity consistency check, which is done using an implementation of the Gabow algorithm. 
                                 These files allows users to carry a thorough analysis of the intermediary steps and results of MS2DB+.
+                                <br></br>
+                                As an example, we analyze part of the data presented in the XML files generated for the glycosyltransferase ST8SiaIV.
+                                Specifically, we review the intermediary results for the disulfide bond found between cysteines C142-C292. The global
+                                disulfide connectivity for this protein consists of two disulfide bonds: C142-C292 and C156-C356.
+                                <br></br>
+                                In the image below, all three Initial Matches determined (corresponding to S-S bond C142-C292) are shown.
+                                <br></br>
+                                <img style="margin-left:50px;" alt="IMs" src="images/IMs.png" id="IMs"></img>
+                                <br></br>
+                                In the next image, the match score, the <i>pp</i>-value, and the <i>pp2</i>-value determined for each Initial Match 
+                                above are presented.
+                                <br></br>
+                                <img style="margin-left:50px;" alt="CMs" src="images/CMs.png" id="CMs"></img>
+                                <br></br>
                             </td>
                         </tr>                        
                         <tr>
