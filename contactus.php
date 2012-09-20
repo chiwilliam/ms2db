@@ -72,7 +72,7 @@
                                         <td valign="top">
                                             <h2 style="margin-top:0px;"><a name="Rahul_Singh"> </a> Rahul Singh </h2>
                                             <p />
-                                            Assistant Professor, Department of Computer Science<br />
+                                            Professor, Department of Computer Science<br />
 
                                                 San Francisco State University, CA 94132
                                                 <p />
