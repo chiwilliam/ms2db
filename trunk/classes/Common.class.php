@@ -932,7 +932,7 @@ class Commonclass {
                         $filename = zip_entry_name($zip_entry);
                         $extension = strtoupper(substr(strrchr($filename,"."),1));
 
-                        if($extension == "MZXML" || $extension == "MZML" || $extension == "MZDATA"){
+                        if($extension == "MZXML" || $extension == "MZML" || $extension == "MZDATA" || $extension == "XML"){
 
                             //load MZXML data
                             $data = zip_entry_read($zip_entry,zip_entry_filesize($zip_entry));
@@ -1275,6 +1275,7 @@ class Commonclass {
 
     public function processXMLFilesWithIMInfo($zipFile,$root){
 
+        $countmatches = 0;
         $conn = $this->openDB();
 
         $doc = new DOMDocument();
@@ -1283,6 +1284,7 @@ class Commonclass {
         $matches = $doc->getElementsByTagName("match");
         foreach($matches as $match){
 
+            $countmatches++;
             $dta = $match->getElementsByTagName("DTA_file")->item(0)->nodeValue;
             
             $precursor_info = $match->getElementsByTagName("Precursor_ion")->item(0)->nodeValue;
@@ -1371,7 +1373,12 @@ class Commonclass {
 
         $this->closeDB($conn);
         
-        return 'File processed successfully!';
+        if($countmatches == 0){
+            return 'File processed successfully, but no S-S bonds were found!';
+        }
+        else{
+            return 'File processed successfully!';
+        }
     }
 
     public function openDB(){
