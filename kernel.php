@@ -1621,6 +1621,9 @@
         }        
     }
 
+    if(strlen($message) > 0){
+        unset($debug);
+    }
     //Load UI
     if($transmembranefrom == 0 ){
         $transmembranefrom = "";
