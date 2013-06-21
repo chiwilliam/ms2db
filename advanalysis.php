@@ -15,6 +15,7 @@
     </head>
 
     <body>
+        <?php include_once("analyticstracking.php") ?>
         <script type="text/javascript" src="js/wz_tooltip.js"></script>
         <!-- Begin Container -->
         <div id="container">
