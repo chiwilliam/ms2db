@@ -60,7 +60,7 @@
                 unset($tmp[$j]);
             }
         }
-        ksort(&$tmp);
+        ksort($tmp);
         
         $range = count($tmp);
         for($j=1;$j<=$range;$j++){
@@ -71,12 +71,12 @@
                     unset($tmp2[$k]);
                 }
             }
-            ksort(&$tmp2);
+            ksort($tmp2);
             if(count($tmp2) != 4){
                 unset($tmp[$j]);
             }
         }
-        ksort(&$tmp);
+        ksort($tmp);
         
         $newstr = implode(" ** ", $tmp);
         if(strlen(trim($newstr)) > 0){
@@ -146,7 +146,7 @@
             $str2 = trim(substr($results[$j],$start2+3));
             $str2 = substr($str2,0,strlen($str2)-2);
             $str2 = str_replace(" ", "", $str2);
-            $tmp = similar_text($str, $str2, &$percent);
+            $tmp = similar_text($str, $str2, $percent);
             
             if($percent > 30){
                 $unique = false;

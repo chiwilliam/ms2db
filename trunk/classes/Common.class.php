@@ -7,7 +7,7 @@
 class Commonclass {
 
     public function sortByCysteines(&$array){
-        uksort(&$array,array($this,"_cmpCysteines"));
+        uksort($array,array($this,"_cmpCysteines"));
     }
 
     //sort array by cysteines
@@ -31,7 +31,7 @@ class Commonclass {
     }
 
     public function sortByMass(&$array){
-        uksort(&$array,array($this,"_cmpMass"));
+        uksort($array,array($this,"_cmpMass"));
     }
 
     //sort array by mass
@@ -65,8 +65,8 @@ class Commonclass {
     //get highest precursor ion mass
     public function getMaxPrecursorMass($PML){
 
-        reset(&$PML);
-        $max = key(&$PML);
+        reset($PML);
+        $max = key($PML);
 
         $value = $PML[$max];
         $value = (double)substr($value, 0, strpos($value,' '));
@@ -77,8 +77,8 @@ class Commonclass {
     //get lowest precursor ion mass
     public function getMinPrecursorMass($PML){
 
-        end(&$PML);
-        $min = key(&$PML);
+        end($PML);
+        $min = key($PML);
 
         $value = $PML[$min];
         $value = (double)substr($value, 0, strpos($value,' '));
@@ -89,8 +89,8 @@ class Commonclass {
     //get number of AA from precursor ion of maximum mass
     public function getMaxPrecursorAAs($PML){
 
-        reset(&$PML);
-        $max = key(&$PML);
+        reset($PML);
+        $max = key($PML);
         
         return substr($max,0,strpos($max,"-"));
     }
@@ -98,8 +98,8 @@ class Commonclass {
     //get number of AA from precursor ion of minimum mass
     public function getMinPrecursorAAs($PML){
 
-        end(&$PML);
-        $min = key(&$PML);
+        end($PML);
+        $min = key($PML);
 
         return substr($min,0,strpos($min,"-"));
     }
@@ -182,7 +182,7 @@ class Commonclass {
         //create some complementary arrays to convert the position of the cysteines
         //(label) to an index that will be used in the input file for wmatch
         $keys = array_keys($graph);
-        sort(&$keys,SORT_NUMERIC);
+        sort($keys,SORT_NUMERIC);
         for($i=0;$i<$vertices;$i++){
             $index[$keys[$i]] = $i+1;
         }
@@ -216,9 +216,9 @@ class Commonclass {
 
             //for each vertex, calculate the possible edges with its respective weight
             //hold edge weights on array values
-            ksort(&$edges,SORT_NUMERIC);
+            ksort($edges,SORT_NUMERIC);
             //hold edge indexes on array values
-            sort(&$edgeskeys,SORT_NUMERIC);
+            sort($edgeskeys,SORT_NUMERIC);
             for($k=0;$k<count($edges);$k++){
                 //#index #weight \n\n
                 $input .= $edgeskeys[$k]." ".$edges[$edgeskeys[$k]]." \n\n";

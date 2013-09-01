@@ -12,8 +12,8 @@
     $protein = getProtein($filename);
     $proteinDB = getProtein($filenameDB);
     
-    $maxProteinLength = getMaxProteinLength(&$protein);
-    $maxProteinLengthDB = getMaxProteinLength(&$proteinDB);
+    $maxProteinLength = getMaxProteinLength($protein);
+    $maxProteinLengthDB = getMaxProteinLength($proteinDB);
     if($maxProteinLengthDB > $maxProteinLength){
         $maxProteinLength = $maxProteinLengthDB;
     }
@@ -31,7 +31,7 @@
     }
     
     $CSPmatches = array();
-    $CSPmatches = getCSPData(&$protein,&$proteinDB);
+    $CSPmatches = getCSPData($protein,$proteinDB);
     
     for($i=0;$i<count($CSPmatches);$i++){
         $CSPmatches[$i]['similarity'] = calculateSimilarity($CSPmatches[$i]['CSP']);
