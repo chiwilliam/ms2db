@@ -50,9 +50,9 @@
         //Level-2 Predictive
         $start = microtime(true);        
         //Level-2 Predictive based on the results from Level-1 SVM and MS/MS
-        //$CSPmatch = confirmBondsViaSVM2(&$protein, &$pbonds, $bonds, $root);
+        //$CSPmatch = confirmBondsViaSVM2($protein, $pbonds, $bonds, $root);
         //Level-2 CSPmatchPredictive alone! No filtering nor dependency on others
-        $p2bonds = runCSP(&$protein, $pbonds, $root);        
+        $p2bonds = runCSP($protein, $pbonds, $root);        
         $time["CSP"] = microtime(true) - $start;
         
         //Back to Level 1 here
@@ -151,8 +151,8 @@
         $tmp = file_get_contents($svmfilenamepredict);
         $result = explode("\n", $tmp);
         unset($tmp);
-        array_pop(&$result);
-        array_shift(&$result);
+        array_pop($result);
+        array_shift($result);
         
         return $result;
     }
@@ -299,7 +299,7 @@
         
         $filenameDB = getFileName("prediction", "uniprotDB.dat",$root);
         $proteinDB = getProtein($filenameDB);
-        $maxProteinLengthDB = getMaxProteinLength(&$proteinDB);
+        $maxProteinLengthDB = getMaxProteinLength($proteinDB);
         
         //remove non-bonds from all possible combinations
         $protein['BONDS'] = updateToValidBonds($pbonds, $msbonds);
@@ -324,7 +324,7 @@
         }
 
         $CSPmatches = array();
-        $CSPmatches = getCSPData(&$protein,&$proteinDB);
+        $CSPmatches = getCSPData($protein,$proteinDB);
         
         unset($proteinDB);
 
@@ -419,7 +419,7 @@
         
         $filenameDB = getFileName("prediction", "uniprotDB.dat",$root);
         $proteinDB = getProtein($filenameDB);
-        $maxProteinLengthDB = getMaxProteinLength(&$proteinDB);
+        $maxProteinLengthDB = getMaxProteinLength($proteinDB);
         
         $countDB = count($proteinDB);
         for($i=0;$i<$countDB;$i++){
@@ -430,7 +430,7 @@
         $CSPs = getCSPsFromAllBonds($pbonds);
 
         $CSPmatches = array();
-        $CSPmatches = getCSPMatches(&$CSPs,&$proteinDB);
+        $CSPmatches = getCSPMatches($CSPs,$proteinDB);
         
         unset($proteinDB);
 
@@ -492,7 +492,7 @@
                         $cysteines[] = substr($bond, strpos($bond, "-")+1);                        
                     }
                     for($j=0;$j<$countCSP1;$j++){
-                        $bondCSP1 = key(&$CSPs[1][$j]);
+                        $bondCSP1 = key($CSPs[1][$j]);
                         $cys1 = substr($bondCSP1, 0, strpos($bondCSP1, "-"));
                         $cys2 = substr($bondCSP1, strpos($bondCSP1, "-")+1);
                         if(!in_array($cys1, $cysteines) && !in_array($cys2, $cysteines)){
@@ -559,7 +559,7 @@
             $totalbonds++;
         }
         
-        setCSPs(&$CSPs);
+        setCSPs($CSPs);
         
         return $CSPs;        
     }
@@ -580,7 +580,7 @@
                 $cys[] = $cys2;
             }
         }
-        sort(&$cys);
+        sort($cys);
         
         return $cys;
     }

@@ -26,15 +26,15 @@ $cmd2 = "C:\\Users\\William\\Desktop\\SFSU\\SVM\\libsvm-2.91\\windows\\svm-scale
 $cmd3 = "C:\\Users\\William\\Desktop\\SFSU\\SVM\\libsvm-2.91\\windows\\svm-train -v 5 svmguide2.scale";
 $cmd4 = "python C:\\Users\\William\\Desktop\\SFSU\\SVM\\libsvm-2.91\\tools\\grid.py svmguide2.scale";
 
-$a1 = exec($cmd1,&$result1,&$var1);
+$a1 = exec($cmd1,$result1,$var1);
 
 echo $result1[2].'<br/><br/>';
 
 exit;
 
-$a2 = exec($cmd2,&$result2,&$var2);
-$a3 = exec($cmd3,&$result3,&$var3);
-$a4 = exec($cmd4,&$result4,&$var4);
+$a2 = exec($cmd2,$result2,$var2);
+$a3 = exec($cmd3,$result3,$var3);
+$a4 = exec($cmd4,$result4,$var4);
 
 echo $a3.'<br/>'.$a4;
 
@@ -52,17 +52,17 @@ $cmd6 = "python C:\\Users\\William\\Desktop\\SFSU\\SVM\\libsvm-2.91\\tools\\grid
 $cmd7 = "C:\\Users\\William\\Desktop\\SFSU\\SVM\\libsvm-2.91\\windows\\svm-train -c 2 -g 2 svmguide1.scale";
 $cmd8 = "C:\\Users\\William\\Desktop\\SFSU\\SVM\\libsvm-2.91\\windows\\svm-predict svmguide1.t.scale svmguide1.scale.model svmguide1.t.predict";
 
-$a1 = exec($cmd1,&$result1,&$var1);
+$a1 = exec($cmd1,$result1,$var1);
 
 echo $result1[5].'<br/><br/>';
 
-$a2 = exec($cmd2,&$result2,&$var2);
-$a3 = exec($cmd3,&$result3,&$var3);
-$a4 = exec($cmd4,&$result4,&$var4);
-$a5 = exec($cmd5,&$result5,&$var5);
-$a6 = exec($cmd6,&$result6,&$var6);
-$a7 = exec($cmd7,&$result7,&$var7);
-$a8 = exec($cmd8,&$result8,&$var8);
+$a2 = exec($cmd2,$result2,$var2);
+$a3 = exec($cmd3,$result3,$var3);
+$a4 = exec($cmd4,$result4,$var4);
+$a5 = exec($cmd5,$result5,$var5);
+$a6 = exec($cmd6,$result6,$var6);
+$a7 = exec($cmd7,$result7,$var7);
+$a8 = exec($cmd8,$result8,$var8);
 
 echo $a5.'<br/>'.$a6.'<br/>'.$a8;
 

@@ -96,7 +96,7 @@ class ConfirmedMatchclass {
                     $i = $i+$total-1;
                 }
                 else{
-                    $newvalues[key(&$tmp)] = $tmp[key(&$tmp)];
+                    $newvalues[key($tmp)] = $tmp[key($tmp)];
                 }
             }
             
@@ -116,19 +116,19 @@ class ConfirmedMatchclass {
         $tmp = $data;
 
         //get maximum intensity
-        end(&$data);
+        end($data);
         //5% of maximum intensity
-        $maxIntensity = key(&$data);
+        $maxIntensity = key($data);
         $intensityScreen = (int)(round($maxIntensity*$intensityLimit));
         //$move pointer to first fragment
-        reset(&$data);
+        reset($data);
         //screen fragments whose intensity is lower that intensityScreen
         
-        while($intensity = (int)(key(&$data))){
+        while($intensity = (int)(key($data))){
             if($intensity < $intensityScreen){
                 unset($data[$intensity]);
             }
-            next(&$data);
+            next($data);
         }
 
         $totalRecords = count($data);
@@ -148,11 +148,11 @@ class ConfirmedMatchclass {
                 return $data;
                 break;
             case ($totalRecords > $recordsLimit):
-                reset(&$data);
+                reset($data);
                 $j = 0;
                 while($j < ($totalRecords-$recordsLimit)){
-                    $intensity = key(&$data);
-                    next(&$data);
+                    $intensity = key($data);
+                    next($data);
                     unset($data[$intensity]);
                     $j++;
                }
@@ -171,16 +171,16 @@ class ConfirmedMatchclass {
 
         if($pepNumber == 1){
             //intrabond only
-            $this->retrieveIntraBondFMSElements(&$FMS, $peptides[0], $cysteines[0]);
+            $this->retrieveIntraBondFMSElements($FMS, $peptides[0], $cysteines[0]);
         }
         else{
             for($i=0;$i<count($pepNumber);$i++){
                 //intrabond only or fragments
-                $this->retrieveIntraBondFMSElements(&$FMS, $peptides[$i], $cysteines[$i], $i);
+                $this->retrieveIntraBondFMSElements($FMS, $peptides[$i], $cysteines[$i], $i);
             }
 
             //treat interbonds
-            $this->retrieveInterBondFMSElements(&$FMS, $peptides, $cysteines);
+            $this->retrieveInterBondFMSElements($FMS, $peptides, $cysteines);
         }
 
         return $FMS;
@@ -414,8 +414,8 @@ class ConfirmedMatchclass {
         $FMS = $this->shrinkFMS($FMS, $minMass, $maxMass);
         */
         
-        reset(&$FMS);
-        while($tmp = current(&$FMS)){
+        reset($FMS);
+        while($tmp = current($FMS)){
             $mass = $tmp["mass"];
             /*
             if($mass <= 2000){
@@ -445,7 +445,7 @@ class ConfirmedMatchclass {
                     }
 
                     //for debugging
-                    $FMSkey = key(&$FMS);
+                    $FMSkey = key($FMS);
                     $TMLkey = $i;
                     $tmp["debug"] = array("FMS" => $FMSkey, "TML" => $TMLkey);
                     //end debugging
@@ -453,7 +453,7 @@ class ConfirmedMatchclass {
                     $matches[] = $tmp;
                 }
             }
-            next(&$FMS);
+            next($FMS);
         }
 
         return $matches;
@@ -605,7 +605,7 @@ class ConfirmedMatchclass {
                 //merge and trim list
                 if(isset($list2)){
                     $list1 = array_merge($list1, $list2);
-                    ksort(&$list1);
+                    ksort($list1);
 
                     $list1 = $AAs->trimListKeepBigger($list1,$delta);
                     
@@ -623,7 +623,7 @@ class ConfirmedMatchclass {
         unset($list1);
         unset($list2);
 
-        ksort(&$FMS);
+        ksort($FMS);
 
         unset($result);
         $result = array();
@@ -696,7 +696,7 @@ class ConfirmedMatchclass {
 */
         
         //sort TML by mass
-        sort(&$TML);
+        sort($TML);
 
         $results['TML'] = $TML;
         $results['maxintensity'] = $max_intensity;
@@ -706,21 +706,21 @@ class ConfirmedMatchclass {
 
     public function shrinkFMS($data, $minMass, $maxMass){
 
-        reset(&$data);
-        while($tmp = current(&$data)){
+        reset($data);
+        while($tmp = current($data)){
             $var = $tmp["mass"];
             if($var < $minMass){
-                unset($data[key(&$data)]);
+                unset($data[key($data)]);
             }
             else
                 break;
         }
-        end(&$data);
-        while($tmp = current(&$data)){
+        end($data);
+        while($tmp = current($data)){
             $var = $tmp["mass"];
             if($var > $maxMass){
-                array_pop(&$data);
-                end(&$data);
+                array_pop($data);
+                end($data);
             }
             else
                 break;

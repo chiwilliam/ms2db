@@ -285,7 +285,7 @@ class AAclass {
         $totalList = count($keys);
         $totalTrimmed = count($trimmed);
 
-        ksort(&$trimmed);
+        ksort($trimmed);
 
         return $trimmed;
     }

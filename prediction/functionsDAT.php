@@ -147,7 +147,7 @@
                 $position = getPosition($AAs[$i]);
             }            
             $array = convertPositiontoArray($position);
-            $string .= convertArraytoString($i, $count, &$array, $DOC);       
+            $string .= convertArraytoString($i, $count, $array, $DOC);       
         }
         
         unset($array);

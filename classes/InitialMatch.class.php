@@ -189,7 +189,7 @@ class InitialMatchclass {
             }
 
             $list1 = array_merge($list1, $list2);
-            ksort(&$list1);
+            ksort($list1);
             
         }
 
@@ -265,7 +265,7 @@ class InitialMatchclass {
             }
         }
         //sort by mass
-        ksort(&$peps);
+        ksort($peps);
         return $peps;
     }
 
@@ -459,10 +459,10 @@ class InitialMatchclass {
                                     $pepDMS = $this->convertIndextoAAs($pepMatch);
 
                                     if(count($pepDMS) > 0){
-                                        $list2[$index]['IM'] = array("DMS" => key(&$pepDMS),"PML" => $PMLkeys[$k]);
+                                        $list2[$index]['IM'] = array("DMS" => key($pepDMS),"PML" => $PMLkeys[$k]);
                                         $counterIM++;
                                         //debug
-                                        //$IM[] = array("DMS" => key(&$pepDMS),"PML" => $PMLkeys[$k]);
+                                        //$IM[] = array("DMS" => key($pepDMS),"PML" => $PMLkeys[$k]);
                                         $DMS = array_merge($DMS,$pepDMS);
                                     }
                                 }
@@ -472,7 +472,7 @@ class InitialMatchclass {
                 }
                 if(isset($list2)){
                     $list1 = array_merge($list1, $list2);
-                    ksort(&$list1);
+                    ksort($list1);
 
                     $completelist = array_merge($completelist,$list1);
 
@@ -493,10 +493,10 @@ class InitialMatchclass {
             //accounts for possible IMs that would be trimmed
             for($i=0;$i<$counterIM;$i++){
                 if($i > 0){
-                    array_pop(&$list1);
+                    array_pop($list1);
                 }
-                end(&$list1);
-                $key = key(&$list1);
+                end($list1);
+                $key = key($list1);
                 $lowerbond = ((double)($precursorMass) - (double)($IMthreshold));
                 $matchvalue = $list1[$key]['mass'];
                 if($matchvalue >= $lowerbond && isset($list1[$key]['IM'])){
