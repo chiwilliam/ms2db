@@ -26,6 +26,7 @@
                     <li><a href="advanalysis.php" onmouseover="Tip('MS2DB+ for Advanced users')" onmouseout="UnTip()">Advanced Analysis</a></li>
                     <li><a href="datasets.php" onmouseover="Tip('MS2DB+ Datasets')" onmouseout="UnTip()">Datasets</a></li>
                     <li class="selected"><a href="publications.php" onmouseover="Tip('MS2DB+ Publications')" onmouseout="UnTip()">Publications</a></li>
+                    <li><a href="citing.php" onmouseover="Tip('MS2DB+ Citing Us')" onmouseout="UnTip()">Citing MS2DB+</a></li>
                     <li><a href="contactus.php" onmouseover="Tip('MS2DB+ Contact Us')" onmouseout="UnTip()">Contact Us</a></li>
                     <li><a href="help.php" onmouseover="Tip('MS2DB+ Help')" onmouseout="UnTip()">Help</a></li>
                     <li><a href="faq.php" onmouseover="Tip('MS2DB+ FAQ')" onmouseout="UnTip()">FAQ</a></li>
@@ -46,23 +47,43 @@
                         <tr>
                             <td>
                                 <ul>
-                                    <!-- Thesis
                                     <li>
-                                        <font face="Times New Roman" size="3">W. Murad
-                                        &quot;Disulfide Bond Determination by Combining Efficient Search and Machine Learning&quot;,
-                                        <i> Master Thesis, San Francisco State University, San Francisco</i>, December 2010</font>
-                                        <a href="./papers/thesis.pdf">
-                                            <img alt="[ZIP]" border="0" height="16" src="./images/pdf.gif" width="16" />
+                                        <font face="Times New Roman" size="3">
+                                        W. Murad and R. Singh, "The MS2DB++ Webserver: Disulfide Bond Determination 
+                                        Through Evidence Combination", 
+                                        <i>IEEE Transactions on NanoBioscience</i>, 12, Issue 4, pp.340-342, 2014
+                                        </font>
+                                        <a target="_blank" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6695758">
+                                            <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
                                         </a>
                                     </li>
                                     <dd>&nbsp;</dd>
-                                    -->
+                                    <li>
+                                        <font face="Times New Roman" size="3">
+                                        R. Singh and W. Murad, "Protein disulfide topology determination through the fusion of mass 
+                                        spectrometric analysis and sequence-based prediction using Dempster-Shafer theory", 
+                                        <i>BMC Bioinformatics</i>, 14(Suppl 2):S20, 2013
+                                        </font>
+                                        <a target="_blank" href="http://www.biomedcentral.com/1471-2105/14/S2/S20">
+                                            <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
+                                        </a>
+                                    </li>
+                                    <dd>&nbsp;</dd>
+                                    <li>
+                                        <font face="Times New Roman" size="3">
+                                        W. Murad and R. Singh, "MS2DB+: A software for Determination of Disulfide Bonds 
+                                        Using Multi-Ion Analysis", <i>IEEE Transactions on NanoBioscience</i>, 12, Issue 2, pp.69-71, 2013
+                                        </font>
+                                        <a target="_blank" href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6335483">
+                                            <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
+                                        </a>
+                                    </li>
+                                    <dd>&nbsp;</dd>
                                     <li>
                                         <font face="Times New Roman" size="3">
                                         W. Murad, R. Singh, and T-Y. Yen, "An Efficient Algorithmic Approach for Mass
                                         Spectrometry-Based Disulfide Connectivity Determination in Proteins Using
                                         Multi-Ion Analysis", <i>BMC Bioinformatics</i>, 12 (Suppl 1):S12, 2011
-                                        (Corresponding author: R. Singh).
                                         </font>
                                         <a target="_blank" href="http://www.biomedcentral.com/1471-2105/12/S1/S12">
                                             <img alt="[PDF]" border="0" height="16" src="./images/pdf.gif" width="16" />
