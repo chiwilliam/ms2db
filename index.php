@@ -4,7 +4,7 @@
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
         <!-- #BeginEditable "doctitle" -->
-        <title>Home</title>
+        <title>MS2DB+</title>
         <!-- #EndEditable -->
         <link href="styles/style1.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
         <link href="styles/style.css" rel="stylesheet" type="text/css" />
