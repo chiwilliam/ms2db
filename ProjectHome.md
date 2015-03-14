@@ -1,0 +1,5 @@
+MS2DB+ is an open-source platform-independent web application that efficiently determines the disulfide linkages in proteins based on tandem mass spectrometry data. The software can account for multiple ions (a, ao, a`*`, b, bo, b`*`, c, x, y, yo, y`*`, and z) in determining the disulfide bonds, yet ensuring that the solution is found in polynomial time.
+
+The application uses a local-to-global approach to merge putative disulfide bonds found by the search-and-match framework into the most likely global disulfide connectivity pattern. This optimization technique ensures the connectivity topology determined is consistent. The disulfide connectivity pattern identified is presented in both graphical and tabular user-friendly formats.
+
+In its default mode, MS2DB+ is completely automatic and easy-to-use. At the same time, expert users are provided with an opportunity to “tune” crucial parameters required in the disulfide bond determination process.
